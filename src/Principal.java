@@ -1,3 +1,6 @@
+import Hash.ElementoYaExistenteException;
+import Hash.HashCerrado;
+import double_linked_list.ValorNoExisteException;
 import uy.edu.um.clases.NationalOlympicCommittee;
 
 import java.io.BufferedReader;
@@ -12,13 +15,16 @@ public class Principal {
             objReader = new BufferedReader(new FileReader("noc_regions.csv"));
             while ((strCurrentLine = objReader.readLine()) != null) {
                 String[] vec = strCurrentLine.split(",");
+                HashCerrado NationalOlympicCommittees= new HashCerrado(231);
                 NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0],vec[1]);
-                System.out.println(vec[0]);
+                NationalOlympicCommittees.insert(temp.getNoc(),temp.getRegion());
+                System.out.println(NationalOlympicCommittees.get(temp.getNoc()));
+
+
             }
-        } catch (IOException e) {
+        } catch (IOException | ElementoYaExistenteException | ValorNoExisteException e) {
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             try {
                 if (objReader!= null)     objReader.close();
             } catch (IOException ex) {
