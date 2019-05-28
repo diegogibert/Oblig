@@ -15,7 +15,7 @@ public class Principal {
             objReader = new BufferedReader(new FileReader("noc_regions.csv"));
             while ((strCurrentLine = objReader.readLine()) != null) {
                 String[] vec = strCurrentLine.split(",");
-                HashCerrado NationalOlympicCommittees= new HashCerrado(231);
+                HashCerrado NationalOlympicCommittees= new HashCerrado(231); //creo que esta mal hacer esto en el while pero si lo pongo afuera me da un error
                 NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0],vec[1]);
                 NationalOlympicCommittees.insert(temp.getNoc(),temp.getRegion());
                 System.out.println(NationalOlympicCommittees.get(temp.getNoc()));
@@ -31,5 +31,6 @@ public class Principal {
                 ex.printStackTrace();
             }
         }
+
     }
 }

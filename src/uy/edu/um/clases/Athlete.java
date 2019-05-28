@@ -5,13 +5,15 @@ public class Athlete {
     private long id;
     private String name;
     private SexType sex;
+    private int age;
     private float height;
     private float weight;
 
-    public Athlete(long id, String name, SexType sex, float height, float weight) {
+    public Athlete(long id, String name, SexType sex, int age, float height, float weight) {
         this.id = id;
         this.name = name;
         this.sex = sex;
+        this.age=age;
         this.height = height;
         this.weight = weight;
     }
@@ -34,5 +36,9 @@ public class Athlete {
 
     public float getWeight() {
         return weight;
+    }
+
+    public int getAge() {
+        return age;
     }
 }
