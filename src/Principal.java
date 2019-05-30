@@ -1,17 +1,54 @@
 import Hash.ElementoYaExistenteException;
 import Hash.HashCerrado;
 import double_linked_list.ValorNoExisteException;
+import javafx.scene.chart.PieChart;
 import uy.edu.um.clases.Athlete;
 import uy.edu.um.clases.NationalOlympicCommittee;
 import uy.edu.um.clases.SexType;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
+import java.util.Scanner;
 
 public class Principal {
 
+    public void displayMenu(){
+        System.out.println ( "1) Question 1\n2) Question 2\n3) Question 3\n4) Question 4\n5) Question 5" );
+        System.out.print ( "Selection: " );
+    }
+
+    public Principal() {
+        Scanner in = new Scanner ( System.in );
+
+        displayMenu();
+        switch ( in.nextInt() ) {
+            case 1:
+                System.out.println ( "result 1" );
+                break;
+            case 2:
+                System.out.println ( "result 2" );
+                break;
+            case 3:
+                System.out.println ( "result 3" );
+                break;
+            case 4:
+                System.out.println ( "result 4" );
+                break;
+            case 5:
+                System.out.println ( "result 5" );
+                break;
+
+            default:
+                System.err.println ( "error" );
+                break;
+        }
+    }
+
     public static void main(String[] args) {
+
+        new Principal();
 
         HashCerrado NationalOlympicCommittees = new HashCerrado(231);
        // HashCerrado Athletes = new HashCerrado(5000);
@@ -44,17 +81,6 @@ public class Principal {
 //
 //
 //            }
-
-
-
-
-
-
-
-
-
-
-
         } catch (IOException | ElementoYaExistenteException e ) {
 
             e.printStackTrace();
@@ -68,6 +94,10 @@ public class Principal {
                 ex.printStackTrace();
             }
         }
+
+
+
+
 
 
 
