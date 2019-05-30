@@ -10,12 +10,13 @@ import uy.edu.um.clases.SexType;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.FileReader;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Principal {
 
     public void displayMenu(){
-        System.out.println ( "1) Question 1\n2) Question 2\n3) Question 3\n4) Question 4\n5) Question 5" );
+        System.out.println ( "1) Question 1\n2) Question 2\n3) Question 3\n4) Question 4\n5) Question 5\n6) EXIT" );
         System.out.print ( "Selection: " );
     }
 
@@ -39,16 +40,24 @@ public class Principal {
             case 5:
                 System.out.println ( "result 5" );
                 break;
+            case 6:
+                break;
 
             default:
-                System.err.println ( "error" );
+                System.err.println ( "Ingrese una opcion Valida" );
+                new Principal();
                 break;
         }
     }
 
     public static void main(String[] args) {
 
-        new Principal();
+        try {
+            new Principal();
+        } catch (InputMismatchException e){
+            System.out.println("Ingrese una opcion valida");
+            new Principal();
+        }
 
         HashCerrado NationalOlympicCommittees = new HashCerrado(231);
        // HashCerrado Athletes = new HashCerrado(5000);
