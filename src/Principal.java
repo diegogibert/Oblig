@@ -1,17 +1,15 @@
 import Hash.ElementoYaExistenteException;
 import Hash.HashCerrado;
-import double_linked_list.ValorNoExisteException;
-import javafx.scene.chart.PieChart;
 import uy.edu.um.clases.Athlete;
 import uy.edu.um.clases.NationalOlympicCommittee;
-import uy.edu.um.clases.SexType;
-
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import static uy.edu.um.clases.SexType.valueOf;
 
 public class Principal {
 
@@ -60,7 +58,7 @@ public class Principal {
         }
 
         HashCerrado NationalOlympicCommittees = new HashCerrado(231);
-       // HashCerrado Athletes = new HashCerrado(5000);
+        HashCerrado Athletes = new HashCerrado(5000);
 
         BufferedReader objReader = null;
 
@@ -76,20 +74,24 @@ public class Principal {
             }
 
 
-           // objReader=new BufferedReader(new FileReader("athlete_events.csv"));
+           objReader=new BufferedReader(new FileReader("athlete_events.csv"));
 
-//            strCurrentLine=objReader.readLine(); // para que saltee la fila que son los nombres de las columnas
-//            while ((strCurrentLine=objReader.readLine())!=null){
-//                String[] vec = strCurrentLine.split(",");
-//
-//
-//                    Athlete temp= new Athlete(Long.parseLong(vec[0]) , vec[1], SexType.valueOf(vec[2]), Integer.parseInt(vec[3]),
-//                            Float.parseFloat(vec[4]), Float.parseFloat(vec[5]));
-//                    Athletes.insert(temp.getId(),temp);
-//
-//
-//
-//            }
+           //creo q no es necesario --> strCurrentLine=objReader.readLine(); // para que saltee la fila que son los nombres de las columnas
+            while ((strCurrentLine)!=null){
+                String[] vec = strCurrentLine.split(",");
+
+                    long temp1 = Long.parseLong(vec[0]);
+                    int  temp2 = Integer.parseInt(vec[3]);
+                    float temp3 = Float.parseFloat(vec[4]);
+                    float temp4 = Float.parseFloat(vec[5]);
+
+                    Athlete temp= new Athlete(temp1 , vec[1], valueOf(vec[2]), temp2,
+                            temp3, temp4);
+                    Athletes.insert(temp.getId(),temp);
+
+
+
+            }
         } catch (IOException | ElementoYaExistenteException e ) {
 
             e.printStackTrace();

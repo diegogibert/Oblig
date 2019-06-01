@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="OBLIGATORIO">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/production/OBLIGATORIO" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
