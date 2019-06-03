@@ -2,6 +2,8 @@ import BinarySearchTree.BinarySearchTree;
 import BinarySearchTree.ValorYaExisteException;
 import Hash.ElementoYaExistenteException;
 import Hash.HashCerrado;
+import double_linked_list.ListaVaciaException;
+import double_linked_list.ValorNoExisteException;
 import heap.HeapNode;
 import uy.edu.um.clases.*;
 
@@ -16,8 +18,9 @@ import static uy.edu.um.clases.SexType.valueOf;
 public class Principal {
 
     public static void main(String[] args) {
-
-
+       HashCerrado NationalOlympicCommittees = new HashCerrado(231);
+       HashCerrado Athletes = new HashCerrado(5000);
+       BinarySearchTree Participations= new BinarySearchTree();
 
         BufferedReader objReader = null;
 
@@ -29,7 +32,8 @@ public class Principal {
             while ((strCurrentLine = objReader.readLine()) != null) {
                 String[] vec = strCurrentLine.split(",");
                 NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0], vec[1]);
-                Questions.NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
+                NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
+
             }
 
 
@@ -44,12 +48,11 @@ public class Principal {
                     int  age = Integer.parseInt(vec[3]);
                     float height = Float.parseFloat(vec[4]);
                     float weight = Float.parseFloat(vec[5]);
-
                     NationalOlympicCommittee AtheletesNOC= new NationalOlympicCommittee(vec[6],vec[7]);
 
-                    Athlete newAthlete = new Athlete (id, vec[1], valueOf(vec[2]), age,
-                        height, weight,AtheletesNOC);
-                    Questions.Athletes.insert(newAthlete.getId(),newAthlete);
+                    Athlete newAthlete = new Athlete(id, vec[1], valueOf(vec[2]), age, height, weight,AtheletesNOC);
+                    Athletes.insert(newAthlete.getId(),newAthlete);
+
 
                 //create Participation
 
@@ -81,7 +84,8 @@ public class Principal {
                 //
 
                 try {
-                    Questions.Participations.insert(newAthlete.getId(),AOP);
+                    Participations.insert(newAthlete.getId(),AOP);
+                    System.out.println(Participations.find(newAthlete.getId()));
 
                 } catch (ValorYaExisteException e) {
                     if(AOP.getMedal().equals(MedalType.GOLD)){
@@ -91,14 +95,18 @@ public class Principal {
                     } else if(AOP.getMedal().equals(MedalType.BRONZE)){
                         newAthlete.setBronzeMedals(newAthlete.getSilverMedals()+1);
                     }
+                } catch (ListaVaciaException e) {
+                    e.printStackTrace();
                 }
-
 
             }
         } catch (IOException | ElementoYaExistenteException e ) {
 
             e.printStackTrace();
 
+
+        } catch (ValorNoExisteException e) {
+            e.printStackTrace();
         } finally {
 
             try {
@@ -109,12 +117,12 @@ public class Principal {
             }
         }
 
-        try {
-            new Menu();
-        } catch (InputMismatchException e){
-            System.out.println("Ingrese una opcion valida");
-            new Menu();
-        }
+//        try {
+//            new Menu();
+//        } catch (InputMismatchException e){
+//            System.out.println("Ingrese una opcion valida");
+//            new Menu();
+//        }
 
 
 

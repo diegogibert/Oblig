@@ -13,7 +13,7 @@ public class Athlete {
     int SilverMedals=0;
     int GoldMedals=0;
 
-    public Athlete(long id, String name, SexType sex, int age, float height, float weight, NationalOlympicCommittee NOC) {
+    public Athlete(long id, String name, SexType sex, int age, float height, float weight,NationalOlympicCommittee NOC) {
         this.id = id;
         this.name = name;
         this.sex = sex;
