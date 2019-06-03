@@ -1,7 +1,9 @@
+import BinarySearchTree.BinarySearchTree;
+import BinarySearchTree.ValorYaExisteException;
 import Hash.ElementoYaExistenteException;
 import Hash.HashCerrado;
-import uy.edu.um.clases.Athlete;
-import uy.edu.um.clases.NationalOlympicCommittee;
+import heap.HeapNode;
+import uy.edu.um.clases.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -13,52 +15,9 @@ import static uy.edu.um.clases.SexType.valueOf;
 
 public class Principal {
 
-    public void displayMenu(){
-        System.out.println ( "1) Question 1\n2) Question 2\n3) Question 3\n4) Question 4\n5) Question 5\n6) EXIT" );
-        System.out.print ( "Selection: " );
-    }
-
-    public Principal() {
-        Scanner in = new Scanner ( System.in );
-
-        displayMenu();
-        switch ( in.nextInt() ) {
-            case 1:
-                System.out.println ( "result 1" );
-                break;
-            case 2:
-                System.out.println ( "result 2" );
-                break;
-            case 3:
-                System.out.println ( "result 3" );
-                break;
-            case 4:
-                System.out.println ( "result 4" );
-                break;
-            case 5:
-                System.out.println ( "result 5" );
-                break;
-            case 6:
-                break;
-
-            default:
-                System.err.println ( "Ingrese una opcion Valida" );
-                new Principal();
-                break;
-        }
-    }
-
     public static void main(String[] args) {
 
-        try {
-            new Principal();
-        } catch (InputMismatchException e){
-            System.out.println("Ingrese una opcion valida");
-            new Principal();
-        }
 
-        HashCerrado NationalOlympicCommittees = new HashCerrado(231);
-        HashCerrado Athletes = new HashCerrado(5000);
 
         BufferedReader objReader = null;
 
@@ -70,25 +29,69 @@ public class Principal {
             while ((strCurrentLine = objReader.readLine()) != null) {
                 String[] vec = strCurrentLine.split(",");
                 NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0], vec[1]);
-                NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
+                Questions.NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
             }
 
 
            objReader=new BufferedReader(new FileReader("athlete_events.csv"));
 
-           //creo q no es necesario --> strCurrentLine=objReader.readLine(); // para que saltee la fila que son los nombres de las columnas
+
             while ((strCurrentLine)!=null){
                 String[] vec = strCurrentLine.split(",");
 
-                    long temp1 = Long.parseLong(vec[0]);
-                    int  temp2 = Integer.parseInt(vec[3]);
-                    float temp3 = Float.parseFloat(vec[4]);
-                    float temp4 = Float.parseFloat(vec[5]);
+                //create atheletes
+                    long id = Long.parseLong(vec[0]);
+                    int  age = Integer.parseInt(vec[3]);
+                    float height = Float.parseFloat(vec[4]);
+                    float weight = Float.parseFloat(vec[5]);
 
-                    Athlete temp= new Athlete(temp1 , vec[1], valueOf(vec[2]), temp2,
-                            temp3, temp4);
-                    Athletes.insert(temp.getId(),temp);
+                    NationalOlympicCommittee AtheletesNOC= new NationalOlympicCommittee(vec[6],vec[7]);
 
+                    Athlete newAthlete = new Athlete (id, vec[1], valueOf(vec[2]), age,
+                        height, weight,AtheletesNOC);
+                    Questions.Athletes.insert(newAthlete.getId(),newAthlete);
+
+                //create Participation
+
+                    int year= Integer.parseInt(vec[9]);
+                    SeasonType st=null;
+                    if(vec[10].equals("Summer")) {
+                        st = SeasonType.SUMMER;
+                    } else {
+                        st= SeasonType.WINTER;
+                    }
+
+                OlympicGame newOG= new OlympicGame(vec[8], year, st);
+                City city= new City(vec[11]);
+                Sport sport= new Sport(vec[12]);
+                Event event= new Event(vec[13]);
+                MedalType medal= MedalType.NA;
+
+
+                if(vec[14].equals("Gold")){
+                    medal=MedalType.GOLD;
+                } else if (vec[14].equals("Silver")) {
+                    medal=MedalType.SILVER;
+                } else if(vec[14].equals("Bronze")){
+                    medal= MedalType.BRONZE;
+                }
+
+                AthleteOlympicParticipation AOP= new AthleteOlympicParticipation(medal,newAthlete,sport,event,city,newOG);
+
+                //
+
+                try {
+                    Questions.Participations.insert(newAthlete.getId(),AOP);
+
+                } catch (ValorYaExisteException e) {
+                    if(AOP.getMedal().equals(MedalType.GOLD)){
+                        newAthlete.setGoldMedals(newAthlete.getGoldMedals()+1);
+                    } else if (AOP.getMedal().equals(MedalType.SILVER)){
+                        newAthlete.setSilverMedals(newAthlete.getSilverMedals()+1);
+                    } else if(AOP.getMedal().equals(MedalType.BRONZE)){
+                        newAthlete.setBronzeMedals(newAthlete.getSilverMedals()+1);
+                    }
+                }
 
 
             }
@@ -104,6 +107,13 @@ public class Principal {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+        }
+
+        try {
+            new Menu();
+        } catch (InputMismatchException e){
+            System.out.println("Ingrese una opcion valida");
+            new Menu();
         }
 
 
