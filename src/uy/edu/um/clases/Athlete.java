@@ -1,5 +1,7 @@
 package uy.edu.um.clases;
 
+import double_linked_list.MyList;
+
 public class Athlete {
 
     private long id;
@@ -12,6 +14,7 @@ public class Athlete {
     int BronzeMedals=0;
     int SilverMedals=0;
     int GoldMedals=0;
+
 
     public Athlete(long id, String name, SexType sex, int age, float height, float weight,NationalOlympicCommittee NOC) {
         this.id = id;
