@@ -4,4 +4,5 @@ public enum SexType {
 
     M,
     F,
+    NA,
 }
