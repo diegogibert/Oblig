@@ -18,7 +18,8 @@ import static uy.edu.um.clases.SexType.valueOf;
 public class LoadData {
     protected static HashCerrado NationalOlympicCommittees = new HashCerrado(10000);
     protected static HashCerrado Athletes = new HashCerrado(50000);
-    protected static HeapMax OlympicGames = new HeapMax(100);
+    protected static HeapMax OlympicGames = new HeapMax(100000);
+    protected static HeapMax OlympicGames0 = new HeapMax(100000);
 
     public HashCerrado getNationalOlympicCommittees() {
         return NationalOlympicCommittees;
@@ -45,9 +46,6 @@ public class LoadData {
                 String[] vec = strCurrentLine.split(",");
                 NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0], vec[1]);
                 NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
-
-
-
             }
 
 
@@ -118,17 +116,14 @@ public class LoadData {
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
                 AthleteOlympicParticipation AOP = new AthleteOlympicParticipation(medal, newAthlete, sport, event, city, newOG);
 
-                if (sex.equals(SexType.F) && !OlympicGames.belongs(newOG)) {
-                    newOG.setCantidadDeAtletasFemeninos(newOG.getCantidadDeAtletasFemeninos() + 1);
-                    HeapNode temp = new HeapNode(newOG.getCantidadDeAtletasFemeninos(), newOG);
-                    OlympicGames.add(temp);
-                } else if (sex.equals(SexType.F) && OlympicGames.belongs(newOG)) {
-                    newOG.setCantidadDeAtletasFemeninos(newOG.getCantidadDeAtletasFemeninos() + 1);
-                } else if (sex.equals(SexType.M)) {
-                    newOG.setCantidadDeAtletasMasculinos(newOG.getCantidadDeAtletasMasculinos() + 1);
-                } else {
-                    newOG.setCantidadDeAtletasOtros(newOG.getCantidadDeAtletasOtros() + 1);
+                if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) {
+                    OlympicGames0.add(new HeapNode(1, newOG));
+                } else if (sex.equals(SexType.F) && OlympicGames0.belongs(newOG)) {
+                    OlympicGame og=  (OlympicGame) OlympicGames0.get(newOG);
+                    og.setCantidadDeAtletasFemeninos(og.getCantidadDeAtletasFemeninos() +1);
+                    OlympicGames.add(new HeapNode(og.getCantidadDeAtletasFemeninos() + 1, og));
                 }
+
 
 
 
