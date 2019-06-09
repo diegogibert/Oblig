@@ -15,7 +15,7 @@ public class Menu{
         displayMenu();
         switch ( in.nextInt() ) {
             case 1:
-                Questions.Question1();
+                System.out.println ( "result 1" );
                 new Menu();
                 break;
             case 2:
@@ -23,7 +23,7 @@ public class Menu{
                 new Menu();
                 break;
             case 3:
-                System.out.println ( "result 3" );
+                Questions.Question3();
                 new Menu();
                 break;
             case 4:
