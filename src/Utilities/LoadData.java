@@ -20,7 +20,6 @@ public class LoadData {
     protected static HeapMax CompetitionsF = new HeapMax(100000);
     private static HeapMax Competitions0M = new HeapMax(100000);
     protected static HeapMax CompetitionsM = new HeapMax(1000000);
-    protected static HeapMax OlympicGames0 = new HeapMax(100000);
     protected static HashCerrado athleteOP = new HashCerrado(500);
 
     public HashCerrado getNationalOlympicCommittees() {
@@ -111,7 +110,7 @@ public class LoadData {
                 Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
                 Athletes.insert(newAthlete.getId(), newAthlete);
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
-                AthleteOlympicParticipation AOP = new AthleteOlympicParticipation(medal, newAthlete, sport, event, city, newOG);
+
 
                 if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) {
                     OlympicGames0.add(new HeapNode(1, newOG));
