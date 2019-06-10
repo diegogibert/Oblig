@@ -27,7 +27,7 @@ public class Menu{
                 new Menu();
                 break;
             case 4:
-                System.out.println ( "result 4" );
+                Questions.Question4();
                 new Menu();
                 break;
             case 5:

@@ -1,11 +1,17 @@
 package Utilities;
 
+import uy.edu.um.clases.Event;
 import uy.edu.um.clases.OlympicGame;
+import uy.edu.um.clases.SexType;
+
+import java.util.Scanner;
 
 public class Questions {
     public static void Question1(){
 
     }
+
+    //lo de imprimir en pantalla luego se haria con un for porque al ordenarlo hay que poner en lista
 
 
     public static void Question3() {
@@ -62,6 +68,60 @@ public class Questions {
 
         System.out.println("Nombre: " + temp10.getName() + " Edicion: " + temp10.getSeason() + " Ano: "
                 + temp10.getYear() + " Cantidad de atletas Femeninos: " + temp10.getCantidadDeAtletasFemeninos());
+
+
+    }
+
+
+    public static void Question4(){
+        SexType s=SexType.NA;
+        Scanner in = new Scanner ( System.in );
+        System.out.println("Femenino o Masculino? (F o M)");
+        String i=in.next();
+        if(i.equals("F")) s= SexType.F;
+        else if(i.equals("M")) s=SexType.M;
+        else {
+            System.out.println("Valor invalido");
+            Question4();
+        }
+        //falta algoritmo que los ordene y ta
+
+        if(s.equals(SexType.F)){
+            Event e1= (Event) LoadData.CompetitionsF.getAndDelete();
+            Event e2= (Event) LoadData.CompetitionsF.getAndDelete();
+            while(e1.equals(e2)) e2= (Event) LoadData.CompetitionsF.getAndDelete();
+            Event e3= (Event) LoadData.CompetitionsF.getAndDelete();
+            while(e3.equals(e2) || e3.equals(e1)) e3= (Event) LoadData.CompetitionsF.getAndDelete();
+            Event e4= (Event) LoadData.CompetitionsF.getAndDelete();
+            while(e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4= (Event) LoadData.CompetitionsF.getAndDelete();
+            Event e5= (Event) LoadData.CompetitionsF.getAndDelete();
+            while(e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1)) e5= (Event) LoadData.CompetitionsF.getAndDelete();
+
+            System.out.println("Nombre: "+ e1.getName() + " Sexo: Femenino " + " Cantidad: " + e1.getCantidadMujeres());
+            System.out.println("Nombre: "+ e2.getName() + " Sexo: Femenino " + " Cantidad: " + e2.getCantidadMujeres());
+            System.out.println("Nombre: "+ e3.getName() + " Sexo: Femenino " + " Cantidad: " + e3.getCantidadMujeres());
+            System.out.println("Nombre: "+ e4.getName() + " Sexo: Femenino " + " Cantidad: " + e4.getCantidadMujeres());
+            System.out.println("Nombre: "+ e5.getName() + " Sexo: Femenino " + " Cantidad: " + e5.getCantidadMujeres());
+        }
+
+        if(s.equals(SexType.M)){
+            Event e1= (Event) LoadData.CompetitionsM.getAndDelete();
+            Event e2= (Event) LoadData.CompetitionsM.getAndDelete();
+            while(e1.equals(e2)) e2= (Event) LoadData.CompetitionsM.getAndDelete();
+            Event e3= (Event) LoadData.CompetitionsM.getAndDelete();
+            while(e3.equals(e2) || e3.equals(e1)) e3= (Event) LoadData.CompetitionsM.getAndDelete();
+            Event e4= (Event) LoadData.CompetitionsM.getAndDelete();
+            while(e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4= (Event) LoadData.CompetitionsM.getAndDelete();
+            Event e5= (Event) LoadData.CompetitionsM.getAndDelete();
+            while(e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1)) e5= (Event) LoadData.CompetitionsM.getAndDelete();
+
+            System.out.println("Nombre: "+ e1.getName() + " Sexo: Femenino " + " Cantidad: " + e1.getCantidadHombres());
+            System.out.println("Nombre: "+ e2.getName() + " Sexo: Femenino " + " Cantidad: " + e2.getCantidadHombres());
+            System.out.println("Nombre: "+ e3.getName() + " Sexo: Femenino " + " Cantidad: " + e3.getCantidadHombres());
+            System.out.println("Nombre: "+ e4.getName() + " Sexo: Femenino " + " Cantidad: " + e4.getCantidadHombres());
+            System.out.println("Nombre: "+ e5.getName() + " Sexo: Femenino " + " Cantidad: " + e5.getCantidadHombres());
+        }
+
 
 
     }

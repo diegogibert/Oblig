@@ -15,6 +15,11 @@ public class LoadData {
     protected static HashCerrado NationalOlympicCommittees = new HashCerrado(10000);
     protected static HashCerrado Athletes = new HashCerrado(50000);
     protected static HeapMax OlympicGames = new HeapMax(100000);
+    private static HeapMax OlympicGames0 = new HeapMax(100000);
+    private static HeapMax Competitions0F = new HeapMax(100000);
+    protected static HeapMax CompetitionsF = new HeapMax(100000);
+    private static HeapMax Competitions0M = new HeapMax(100000);
+    protected static HeapMax CompetitionsM = new HeapMax(1000000);
     protected static HeapMax OlympicGames0 = new HeapMax(100000);
     protected static HashCerrado athleteOP = new HashCerrado(500);
 
@@ -22,20 +27,9 @@ public class LoadData {
         return NationalOlympicCommittees;
     }
 
-    public HashCerrado getAthletes() {
-        return Athletes;
-    }
-
-    public HeapMax getOlympicGames() {
-        return OlympicGames;
-    }
-
-
 
     public static void load() {
-
         BufferedReader objReader = null;
-
 
         try {
 
@@ -117,6 +111,7 @@ public class LoadData {
                 Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
                 Athletes.insert(newAthlete.getId(), newAthlete);
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
+                AthleteOlympicParticipation AOP = new AthleteOlympicParticipation(medal, newAthlete, sport, event, city, newOG);
 
                 if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) {
                     OlympicGames0.add(new HeapNode(1, newOG));
@@ -132,6 +127,28 @@ public class LoadData {
                 ArrayList vecEvent = new ArrayList<Event>();
                 ArrayList vecCity = new ArrayList<City>();
                 ArrayList vecOG = new ArrayList<OlympicGame>();
+
+                if (sex.equals(SexType.F) && !Competitions0F.belongs(event)) {
+                    Competitions0F.add(new HeapNode(event.getCantidadMujeres(), event));
+
+                } else if (sex.equals(SexType.F) && Competitions0F.belongs(event)) {
+                    Event e=  (Event) Competitions0F.get(event);
+                    e.setCantidadMujeres(e.getCantidadMujeres() +1);
+                    CompetitionsF.add(new HeapNode(e.getCantidadMujeres() + 1, e));
+
+                }
+
+                if (sex.equals(SexType.M) && !Competitions0M.belongs(event)) {
+                    Competitions0M.add(new HeapNode(event.getCantidadHombres(), event));
+                } else if (sex.equals(SexType.M) && Competitions0M.belongs(event)) {
+                    Event e=  (Event) Competitions0M.get(event);
+                    e.setCantidadHombres(e.getCantidadHombres() +1);
+                    CompetitionsM.add(new HeapNode(e.getCantidadHombres() + 1, e));
+                }
+
+
+
+
 
                 if(athleteOP.belongs(id)){
                     AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(id);
