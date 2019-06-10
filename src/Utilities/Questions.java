@@ -3,6 +3,9 @@ package Utilities;
 import uy.edu.um.clases.OlympicGame;
 
 public class Questions {
+    public static void Question1(){
+
+    }
 
 
     public static void Question3() {

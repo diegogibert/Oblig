@@ -1,9 +1,6 @@
 package Utilities;
 
-import BinarySearchTree.BinarySearchTree;
-import Hash.ElementoYaExistenteException;
 import Hash.HashCerrado;
-import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 import heap.HeapMax;
 import heap.HeapNode;
@@ -12,14 +9,14 @@ import uy.edu.um.clases.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-
-import static uy.edu.um.clases.SexType.valueOf;
+import java.util.ArrayList;
 
 public class LoadData {
     protected static HashCerrado NationalOlympicCommittees = new HashCerrado(10000);
     protected static HashCerrado Athletes = new HashCerrado(50000);
     protected static HeapMax OlympicGames = new HeapMax(100000);
     protected static HeapMax OlympicGames0 = new HeapMax(100000);
+    protected static HashCerrado athleteOP = new HashCerrado(500);
 
     public HashCerrado getNationalOlympicCommittees() {
         return NationalOlympicCommittees;
@@ -33,8 +30,12 @@ public class LoadData {
         return OlympicGames;
     }
 
+
+
     public static void load() {
+
         BufferedReader objReader = null;
+
 
         try {
 
@@ -84,10 +85,12 @@ public class LoadData {
                 } else {
                     sex = SexType.NA;
                 }
+                int i= 0;
+                i++;
 
                 int year;
                 try {
-                     year= Integer.parseInt(vec[9]);
+                    year= Integer.parseInt(vec[9]);
                 } catch(NumberFormatException e){
                     year= 0;
                 }
@@ -114,7 +117,6 @@ public class LoadData {
                 Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
                 Athletes.insert(newAthlete.getId(), newAthlete);
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
-                AthleteOlympicParticipation AOP = new AthleteOlympicParticipation(medal, newAthlete, sport, event, city, newOG);
 
                 if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) {
                     OlympicGames0.add(new HeapNode(1, newOG));
@@ -124,7 +126,34 @@ public class LoadData {
                     OlympicGames.add(new HeapNode(og.getCantidadDeAtletasFemeninos() + 1, og));
                 }
 
+                //preg 1 abajo
+                ArrayList vecMedal = new ArrayList<MedalType>();
+                ArrayList vecSport = new ArrayList<Sport>();
+                ArrayList vecEvent = new ArrayList<Event>();
+                ArrayList vecCity = new ArrayList<City>();
+                ArrayList vecOG = new ArrayList<OlympicGame>();
 
+                if(athleteOP.belongs(id)){
+                    AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(id);
+                    temp.getCity().add(city);
+                    temp.getEvent().add(event);
+                    temp.getOG().add(new OlympicGame(vec[1],year, st));
+                    temp.getSport().add(sport);
+                    if(medal == MedalType.GOLD){
+                        temp.setCantidadOros(temp.getCantidadOros() + 1);
+                    } else if (medal == MedalType.BRONZE){
+                        temp.setCantidadBronces(temp.getCantidadBronces() + 1);
+                    } else if (medal == MedalType.SILVER) {
+                        temp.setCantidadPlatas(temp.getCantidadBronces() + 1);
+                    }
+                }else{
+                    vecMedal.add(medal);
+                    vecCity.add(city);
+                    vecEvent.add(event);
+                    vecOG.add(new OlympicGame(vec[1],year, st));
+                    vecSport.add(sport);
+                    athleteOP.insert(id, new AthleteOlympicParticipation(vecMedal, newAthlete, vecSport, vecEvent, vecCity, vecOG));
+                }
 
 
 
@@ -134,7 +163,9 @@ public class LoadData {
             e.printStackTrace();
 
 
-        }  finally {
+        } catch (ValorNoExisteException e) {
+            e.printStackTrace();
+        } finally {
 
             try {
 
