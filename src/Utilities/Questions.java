@@ -1,6 +1,7 @@
 package Utilities;
 
 import uy.edu.um.clases.Event;
+import uy.edu.um.clases.MedalType;
 import uy.edu.um.clases.OlympicGame;
 import uy.edu.um.clases.SexType;
 
@@ -8,7 +9,22 @@ import java.util.Scanner;
 
 public class Questions {
     public static void Question1(){
+        MedalType m=MedalType.NA;
+        String t;
+        Scanner in = new Scanner ( System.in );
+        System.out.println("Oro(O), Plata(P), Bronce(B) o Todas(T)?");
+        String i=in.next();
+        if(i.equals("O")) m= MedalType.GOLD;
+        else if(i.equals("P")) m=MedalType.SILVER;
+        else if(i.equals("B")) m=MedalType.BRONZE;
+       // else if(i.equals("T")) t = "T";
+        else {
+            System.out.println("Valor invalido");
+            Question1();
+        }
+        if(m.equals(MedalType.GOLD)){
 
+        }
     }
 
     //lo de imprimir en pantalla luego se haria con un for porque al ordenarlo hay que poner en lista

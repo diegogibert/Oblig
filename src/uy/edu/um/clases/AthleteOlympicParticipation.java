@@ -10,10 +10,12 @@ public class AthleteOlympicParticipation {
   private ArrayList <Event> event;
   private ArrayList <City> city;
   private ArrayList <OlympicGame> OG;
-  private int cantidadOros = 1;
-  private int cantidadPlatas = 1;
-  private int cantidadBronces = 1;
-  private int cantidadNA = 1;
+  private int cantidadOros = 0;
+  private int cantidadPlatas = 0;
+  private int cantidadBronces = 0;
+  private int cantidadNA = 0;
+  private int firstMedal;
+  private int lastMedal;
 
   public AthleteOlympicParticipation(ArrayList<MedalType> medal, Athlete athlete, ArrayList<Sport> sport, ArrayList<Event> event, ArrayList<City> city, ArrayList<OlympicGame> OG) {
     this.medal = medal;
@@ -103,4 +105,22 @@ public class AthleteOlympicParticipation {
   public void setCantidadNA(int cantidadNA) {
     this.cantidadNA = cantidadNA;
   }
+
+  public int getFirstMedal() {
+    return firstMedal;
+  }
+
+  public void setFirstMedal(int firstMedal) {
+    this.firstMedal = firstMedal;
+  }
+
+  public int getLastMedal() {
+    return lastMedal;
+  }
+
+  public void setLastMedal(int lastMedal) {
+    this.lastMedal = lastMedal;
+  }
 }
+
+
