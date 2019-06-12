@@ -1,5 +1,7 @@
 package Utilities;
 
+import double_linked_list.ValorNoExisteException;
+
 import java.util.Scanner;
 
 public class Menu{
@@ -9,13 +11,13 @@ public class Menu{
         System.out.print ( "Selection: " );
     }
 
-    public  Menu() {
+    public  Menu() throws ValorNoExisteException {
         Scanner in = new Scanner ( System.in );
 
         displayMenu();
         switch ( in.nextInt() ) {
             case 1:
-                System.out.println ( "result 1" );
+                Questions.Question1();
                 new Menu();
                 break;
             case 2:

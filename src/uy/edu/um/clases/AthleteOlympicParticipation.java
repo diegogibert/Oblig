@@ -13,7 +13,6 @@ public class AthleteOlympicParticipation {
   private int cantidadOros = 0;
   private int cantidadPlatas = 0;
   private int cantidadBronces = 0;
-  private int cantidadNA = 0;
   private int firstMedal;
   private int lastMedal;
 
@@ -86,10 +85,6 @@ public class AthleteOlympicParticipation {
     return cantidadBronces;
   }
 
-  public int getCantidadNA() {
-    return cantidadNA;
-  }
-
   public void setCantidadOros(int cantidadOros) {
     this.cantidadOros = cantidadOros;
   }
@@ -100,10 +95,6 @@ public class AthleteOlympicParticipation {
 
   public void setCantidadBronces(int cantidadBronces) {
     this.cantidadBronces = cantidadBronces;
-  }
-
-  public void setCantidadNA(int cantidadNA) {
-    this.cantidadNA = cantidadNA;
   }
 
   public int getFirstMedal() {

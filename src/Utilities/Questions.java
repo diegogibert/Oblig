@@ -1,29 +1,53 @@
 package Utilities;
 
-import uy.edu.um.clases.Event;
-import uy.edu.um.clases.MedalType;
-import uy.edu.um.clases.OlympicGame;
-import uy.edu.um.clases.SexType;
+import double_linked_list.ValorNoExisteException;
+import uy.edu.um.clases.*;
 
 import java.util.Scanner;
 
 public class Questions {
-    public static void Question1(){
+    public static void Question1() throws ValorNoExisteException {
         MedalType m=MedalType.NA;
-        String t;
-        Scanner in = new Scanner ( System.in );
+        String t = "N";
+        Scanner di = new Scanner ( System.in );
         System.out.println("Oro(O), Plata(P), Bronce(B) o Todas(T)?");
-        String i=in.next();
+        String i=di.next();
         if(i.equals("O")) m= MedalType.GOLD;
         else if(i.equals("P")) m=MedalType.SILVER;
         else if(i.equals("B")) m=MedalType.BRONZE;
-       // else if(i.equals("T")) t = "T";
+        else if(i.equals("T")) t = "T";
         else {
             System.out.println("Valor invalido");
             Question1();
         }
         if(m.equals(MedalType.GOLD)){
-
+           for(int j=0; j < 10; j++){
+               Long id = (Long)LoadData.medallistasOro.getAndDelete();
+               AthleteOlympicParticipation at =  (AthleteOlympicParticipation)LoadData.athleteOP.get(id);
+               System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad de Oros: " + at.getCantidadOros() + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedal() + " Año max: " + at.getLastMedal());
+           }
+        }
+        if(m.equals(MedalType.SILVER)){
+            for(int j=0; j < 10; j++){
+                Long id = (Long)LoadData.medallistasPlata.getAndDelete();
+                AthleteOlympicParticipation at =  (AthleteOlympicParticipation)LoadData.athleteOP.get(id);
+                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad de Platas: " + at.getCantidadPlatas() + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedal() + " Año max: " + at.getLastMedal());
+            }
+        }
+        if(m.equals(MedalType.BRONZE)){
+            for(int j=0; j < 10; j++){
+                Long id = (Long)LoadData.medallistasBronce.getAndDelete();
+                AthleteOlympicParticipation at =  (AthleteOlympicParticipation)LoadData.athleteOP.get(id);
+                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad de Bronces: " + at.getCantidadBronces() + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedal() + " Año max: " + at.getLastMedal());
+            }
+        }
+        if(t.equals("T")){
+            for(int j=0; j < 10; j++){
+                Long id = (Long)LoadData.medallistas.getAndDelete();
+                AthleteOlympicParticipation at =  (AthleteOlympicParticipation)LoadData.athleteOP.get(id);
+                int total = at.getCantidadOros() + at.getCantidadBronces() + at.getCantidadPlatas();
+                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad Total: " + total + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedal() + " Año max: " + at.getLastMedal());
+            }
         }
     }
 
