@@ -17,7 +17,7 @@ public class Menu{
         displayMenu();
         switch ( in.nextInt() ) {
             case 1:
-//                Questions.Question1();
+               Questions.Question1();
                 new Menu();
                 break;
             case 2:
