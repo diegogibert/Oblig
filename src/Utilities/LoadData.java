@@ -1,5 +1,7 @@
 package Utilities;
 
+import BinarySearchTree.BinarySearchTree;
+import BinarySearchTree.ValorYaExisteException;
 import Hash.HashCerrado;
 import double_linked_list.ValorNoExisteException;
 import heap.HeapMax;
@@ -12,8 +14,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoadData {
-    protected static HashCerrado NationalOlympicCommittees = new HashCerrado(10000);
-    protected static HashCerrado Athletes = new HashCerrado(50000);
+    protected static BinarySearchTree NationalOlympicCommittees = new BinarySearchTree();
+    protected static BinarySearchTree Athletes = new BinarySearchTree();
     protected static HeapMax OlympicGames = new HeapMax(100000);
     private static HeapMax OlympicGames0 = new HeapMax(100000);
     private static HeapMax Competitions0F = new HeapMax(100000);
@@ -21,10 +23,6 @@ public class LoadData {
     private static HeapMax Competitions0M = new HeapMax(100000);
     protected static HeapMax CompetitionsM = new HeapMax(1000000);
     protected static HashCerrado athleteOP = new HashCerrado(500);
-
-    public HashCerrado getNationalOlympicCommittees() {
-        return NationalOlympicCommittees;
-    }
 
 
     public static void load() {
@@ -39,7 +37,11 @@ public class LoadData {
             while ((strCurrentLine = objReader.readLine()) != null) {   //anda bien
                 String[] vec = strCurrentLine.split(",");
                 NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0], vec[1]);
-                NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
+                try {
+                    NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
+                } catch (ValorYaExisteException e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -107,7 +109,11 @@ public class LoadData {
                 }
 
                 Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
-                Athletes.insert(newAthlete.getId(), newAthlete);
+                try {
+                    Athletes.insert(newAthlete.getId(), newAthlete);
+                } catch (ValorYaExisteException e) {
+                    e.printStackTrace();    //ESTO SE PUEDE USAR PARA LAS PARTICIPACIONES
+                }
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
 
 
