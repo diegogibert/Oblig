@@ -20,17 +20,12 @@ public class LoadData {
     protected static HeapMax CompetitionsF = new HeapMax(100000);
     private static HeapMax Competitions0M = new HeapMax(100000);
     protected static HeapMax CompetitionsM = new HeapMax(1000000);
-    protected static HashCerrado athleteOP = new HashCerrado(1000000);
-    protected static HeapMax medallistasOro = new HeapMax(1000000);
-    protected static HeapMax medallistasBronce = new HeapMax(1000000);
-    protected static HeapMax medallistasPlata = new HeapMax(1000000);
-    protected static HeapMax medallistas = new HeapMax(1000000);
-    private static int counter=0;
-
+    protected static HashCerrado athleteOP = new HashCerrado(500);
 
     public HashCerrado getNationalOlympicCommittees() {
         return NationalOlympicCommittees;
     }
+
 
     public static void load() {
         BufferedReader objReader = null;
@@ -55,7 +50,6 @@ public class LoadData {
             while ((strCurrentLine2 = objReader.readLine()) != null) {
                 String[] vec = strCurrentLine2.split(",");
 
-
                 long id = Long.parseLong(vec[0].substring(1, vec[0].length() - 1));
                 int age;
                 try {
@@ -63,31 +57,28 @@ public class LoadData {
                 } catch (NumberFormatException e) {
                     age = 0;
                 }
-
                 float height;
                 try {
                     height = Float.parseFloat(vec[4]);
                 } catch (NumberFormatException e) {
                     height = 0;
                 }
-
                 float weight;
                 try {
                     weight = Float.parseFloat(vec[5]);
                 } catch (NumberFormatException e) {
                     weight = 0;
                 }
-
-                NationalOlympicCommittee atheletesNOC = new NationalOlympicCommittee(vec[6], vec[7]);
-
-                SexType sex;
+                NationalOlympicCommittee AtheletesNOC = new NationalOlympicCommittee(vec[6], vec[7]);
+                SexType sex = SexType.NA;
                 if ((vec[2].substring(1, vec[2].length() - 1)).equals("F")) {
                     sex = SexType.F;
                 } else if ((vec[2].substring(1, vec[2].length() - 1)).equals("M")) {
                     sex = SexType.M;
-                } else {
-                    sex = SexType.NA;
                 }
+
+                int i = 0;
+                i++;
 
                 int year;
                 try {
@@ -95,134 +86,84 @@ public class LoadData {
                 } catch (NumberFormatException e) {
                     year = 0;
                 }
-
                 SeasonType st = null;
                 if (vec[10].equals("Summer")) {
                     st = SeasonType.SUMMER;
                 } else {
                     st = SeasonType.WINTER;
                 }
-
                 City city = new City(vec[11]);
                 Sport sport = new Sport(vec[12]);
                 Event event = new Event(vec[13]);
-
                 MedalType medal = MedalType.NA;
-                int or = 1;
-                int pl = 1;
-                int br = 1;
-                int index = strCurrentLine2.indexOf("Gold");
-                if(index == -1) or = 2;
-                if(or == 1) medal = MedalType.GOLD;
-                int index2 = strCurrentLine2.indexOf("Silver");
-                if(index2 == -1) pl = 2;
-                if(pl == 1) medal = MedalType.SILVER;
-                int index3 = strCurrentLine2.indexOf("Bronze");
-                if(index3 == -1) br = 2;
-                if(br == 1) medal = MedalType.BRONZE;
 
-                Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, atheletesNOC);
+
+                if (vec[14].equals("Gold")) {
+                    medal = MedalType.GOLD;
+                } else if (vec[14].equals("Silver")) {
+                    medal = MedalType.SILVER;
+                } else if (vec[14].equals("Bronze")) {
+                    medal = MedalType.BRONZE;
+                }
+
+                Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
                 Athletes.insert(newAthlete.getId(), newAthlete);
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
 
 
-                if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) {
-                    OlympicGames0.add(new HeapNode(1, newOG));
-                } else if (sex.equals(SexType.F) && OlympicGames0.belongs(newOG)) {
-                    OlympicGame og=  (OlympicGame) OlympicGames0.get(newOG);
-                    og.setCantidadDeAtletasFemeninos(og.getCantidadDeAtletasFemeninos() +1);
-                    OlympicGames.add(new HeapNode(og.getCantidadDeAtletasFemeninos() + 1, og));
+                if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) OlympicGames0.add(new HeapNode(1, newOG));
+                 else if (sex.equals(SexType.F) && OlympicGames0.belongs(newOG)) {
+                    OlympicGame og = (OlympicGame) OlympicGames0.get(newOG);
+                    og.setCantidadDeAtletasFemeninos(og.getCantidadDeAtletasFemeninos() + 1);
+                    OlympicGames.add(new HeapNode(og.getCantidadDeAtletasFemeninos() , og));
                 }
 
-
-
-                if (sex.equals(SexType.F) && !Competitions0F.belongs(event)) {
-                    Competitions0F.add(new HeapNode(event.getCantidadMujeres(), event));
-
-                } else if (sex.equals(SexType.F) && Competitions0F.belongs(event)) {
-                    Event e=  (Event) Competitions0F.get(event);
-                    e.setCantidadMujeres(e.getCantidadMujeres() +1);
-                    CompetitionsF.add(new HeapNode(e.getCantidadMujeres() + 1, e));
-
+                if (sex.equals(SexType.F) && !Competitions0F.belongs(event)) Competitions0F.add(new HeapNode(event.getCantidadMujeres(), event));
+                else if (sex.equals(SexType.F) && Competitions0F.belongs(event)) {
+                    Event e = (Event) Competitions0F.get(event);
+                    e.setCantidadMujeres(e.getCantidadMujeres() + 1);
+                    CompetitionsF.add(new HeapNode(e.getCantidadMujeres() , e));
                 }
 
                 if (sex.equals(SexType.M) && !Competitions0M.belongs(event)) {
                     Competitions0M.add(new HeapNode(event.getCantidadHombres(), event));
                 } else if (sex.equals(SexType.M) && Competitions0M.belongs(event)) {
-                    Event e=  (Event) Competitions0M.get(event);
-                    e.setCantidadHombres(e.getCantidadHombres() +1);
-                    CompetitionsM.add(new HeapNode(e.getCantidadHombres() + 1, e));
+                    Event e = (Event) Competitions0M.get(event);
+                    e.setCantidadHombres(e.getCantidadHombres() + 1);
+                    CompetitionsM.add(new HeapNode(e.getCantidadHombres() , e));
                 }
 
                 //preg 1 abajo
+                ArrayList vecMedal = new ArrayList<MedalType>();
+                ArrayList vecSport = new ArrayList<Sport>();
+                ArrayList vecEvent = new ArrayList<Event>();
+                ArrayList vecCity = new ArrayList<City>();
+                ArrayList vecOG = new ArrayList<OlympicGame>();
 
-                if(athleteOP.belongs(id)){
-                    AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(id);
+                if (athleteOP.belongs(id)) {
+                    AthleteOlympicParticipation temp = (AthleteOlympicParticipation) athleteOP.get(id);
                     temp.getCity().add(city);
                     temp.getEvent().add(event);
-                    temp.getOG().add(new OlympicGame(vec[8], year, st));
+                    temp.getOG().add(new OlympicGame(vec[1], year, st));
                     temp.getSport().add(sport);
-                    if(medal == MedalType.GOLD){
+                    if (medal == MedalType.GOLD) {
                         temp.setCantidadOros(temp.getCantidadOros() + 1);
-                    } else if (medal == MedalType.BRONZE){
+                    } else if (medal == MedalType.BRONZE) {
                         temp.setCantidadBronces(temp.getCantidadBronces() + 1);
                     } else if (medal == MedalType.SILVER) {
-                        temp.setCantidadPlatas(temp.getCantidadPlatas() + 1);
+                        temp.setCantidadPlatas(temp.getCantidadBronces() + 1);
                     }
-                }else{
-                    ArrayList vecMedal = new ArrayList<MedalType>();
-                    ArrayList vecSport = new ArrayList<Sport>();
-                    ArrayList vecEvent = new ArrayList<Event>();
-                    ArrayList vecCity = new ArrayList<City>();
-                    ArrayList vecOG = new ArrayList<OlympicGame>();
-
+                } else {
                     vecMedal.add(medal);
                     vecCity.add(city);
                     vecEvent.add(event);
-                    vecOG.add(new OlympicGame(vec[8], year, st));
+                    vecOG.add(new OlympicGame(vec[1], year, st));
                     vecSport.add(sport);
                     athleteOP.insert(id, new AthleteOlympicParticipation(vecMedal, newAthlete, vecSport, vecEvent, vecCity, vecOG));
-                    AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(id);
+                }
 
-                    if(medal == MedalType.GOLD){
-                        temp.setCantidadOros(1);
-                        temp.setFirstMedal(year);
-                    } else if (medal == MedalType.BRONZE){
-                        temp.setCantidadBronces(1);
-                        temp.setFirstMedal(year);
-                    } else if (medal == MedalType.SILVER) {
-                        temp.setCantidadPlatas(1);
-                        temp.setFirstMedal(year);
-                    }
-                    counter++;
-                }
-            }
-            for(long c = 1; c <= counter; c++){
-                AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(c);
-                if(temp.getCantidadOros() != 0){
-                    medallistasOro.add(new HeapNode(temp.getCantidadOros(),c));
-                }
-            }
-            for(long c = 1; c <= counter; c++){
-                AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(c);
-                if(temp.getCantidadPlatas() != 0){
-                    medallistasPlata.add(new HeapNode(temp.getCantidadPlatas(),c));
-                }
-            }
-            for(long c = 1; c <= counter; c++){
-                AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(c);
-                if(temp.getCantidadBronces() != 0){
-                    medallistasBronce.add(new HeapNode(temp.getCantidadBronces(),c));
-                }
-            }
-            for(long c = 1; c <= counter; c++){
-                AthleteOlympicParticipation temp = (AthleteOlympicParticipation)athleteOP.get(c);
-                int total = temp.getCantidadOros() + temp.getCantidadBronces() + temp.getCantidadPlatas();
-                if(total != 0){
-                    medallistas.add(new HeapNode(total,c));
-                }
-            }
 
+            }
         } catch (IOException e) {
 
             e.printStackTrace();
@@ -233,16 +174,19 @@ public class LoadData {
         } finally {
 
             try {
+                //libero memoria que no se usa
+                OlympicGames0=null;
+                Competitions0F=null;
+                Competitions0M=null;
 
                 if (objReader != null) objReader.close();
+
+
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
 
 
-
     }
-
-
 }

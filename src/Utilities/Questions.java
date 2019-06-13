@@ -79,34 +79,34 @@ public class Questions {
 
         //falta algoritmo que los ordene y ta
 
-        System.out.println("Nombre: " + temp1.getName() + " Edicion: " + temp1.getSeason() + " Ano: "
+        System.out.println("1 Nombre: " + temp1.getName() + " Edicion: " + temp1.getSeason() + " Ano: "
                 + temp1.getYear() + " Cantidad de atletas Femeninos: " + temp1.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp2.getName() + " Edicion: " + temp2.getSeason() + " Ano: "
+        System.out.println("2 Nombre: " + temp2.getName() + " Edicion: " + temp2.getSeason() + " Ano: "
                 + temp2.getYear() + " Cantidad de atletas Femeninos: " + temp2.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp3.getName() + " Edicion: " + temp3.getSeason() + " Ano: "
+        System.out.println("3 Nombre: " + temp3.getName() + " Edicion: " + temp3.getSeason() + " Ano: "
                 + temp3.getYear() + " Cantidad de atletas Femeninos: " + temp3.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp4.getName() + " Edicion: " + temp4.getSeason() + " Ano: "
+        System.out.println("4 Nombre: " + temp4.getName() + " Edicion: " + temp4.getSeason() + " Ano: "
                 + temp4.getYear() + " Cantidad de atletas Femeninos: " + temp4.getCantidadDeAtletasFemeninos());
 
         System.out.println("Nombre: " + temp5.getName() + " Edicion: " + temp5.getSeason() + " Ano: "
                 + temp5.getYear() + " Cantidad de atletas Femeninos: " + temp5.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp6.getName() + " Edicion: " + temp6.getSeason() + " Ano: "
+        System.out.println("5 Nombre: " + temp6.getName() + " Edicion: " + temp6.getSeason() + " Ano: "
                 + temp6.getYear() + " Cantidad de atletas Femeninos: " + temp6.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp7.getName() + " Edicion: " + temp7.getSeason() + " Ano: "
+        System.out.println("6 Nombre: " + temp7.getName() + " Edicion: " + temp7.getSeason() + " Ano: "
                 + temp7.getYear() + " Cantidad de atletas Femeninos: " + temp7.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp8.getName() + " Edicion: " + temp8.getSeason() + " Ano: "
+        System.out.println("7 Nombre: " + temp8.getName() + " Edicion: " + temp8.getSeason() + " Ano: "
                 + temp8.getYear() + " Cantidad de atletas Femeninos: " + temp8.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp9.getName() + " Edicion: " + temp9.getSeason() + " Ano: "
+        System.out.println("8 Nombre: " + temp9.getName() + " Edicion: " + temp9.getSeason() + " Ano: "
                 + temp9.getYear() + " Cantidad de atletas Femeninos: " + temp9.getCantidadDeAtletasFemeninos());
 
-        System.out.println("Nombre: " + temp10.getName() + " Edicion: " + temp10.getSeason() + " Ano: "
+        System.out.println("9 Nombre: " + temp10.getName() + " Edicion: " + temp10.getSeason() + " Ano: "
                 + temp10.getYear() + " Cantidad de atletas Femeninos: " + temp10.getCantidadDeAtletasFemeninos());
 
 
