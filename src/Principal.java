@@ -1,5 +1,6 @@
 import Utilities.LoadData;
 import Utilities.Menu;
+import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 
 import java.io.IOException;
@@ -8,7 +9,7 @@ import java.util.InputMismatchException;
 
 public class Principal {
 
-    public static void main(String[] args) throws ValorNoExisteException {
+    public static void main(String[] args) throws ValorNoExisteException, ListaVaciaException {
 
         try {
             LoadData.load();

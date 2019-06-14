@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class LoadData {
     protected static BinarySearchTree NationalOlympicCommittees = new BinarySearchTree();
     protected static BinarySearchTree Athletes = new BinarySearchTree();
-    protected static HeapMax OlympicGames = new HeapMax(100000);
-    private static HeapMax OlympicGames0 = new HeapMax(100000);
+    protected static HeapMax OlympicGames = new HeapMax<Integer,OlympicGame>(1000000);
+    private static HeapMax OlympicGames0 = new HeapMax<Integer,OlympicGame>(1000000);
     private static HeapMax Competitions0F = new HeapMax<Integer,Event>(100000);
     protected static HeapMax CompetitionsF = new HeapMax<Integer,Event>(100000);
     private static HeapMax Competitions0M = new HeapMax<Integer,Event>(100000);
@@ -128,7 +128,7 @@ public class LoadData {
                 OlympicGame newOG = new OlympicGame(vec[8], year, st);
 
 
-                if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) OlympicGames0.add(new HeapNode(1, newOG));
+                if (sex.equals(SexType.F) && !OlympicGames0.belongs(newOG)) OlympicGames0.add(new HeapNode(newOG.getCantidadDeAtletasFemeninos(), newOG));
                  else if (sex.equals(SexType.F) && OlympicGames0.belongs(newOG)) {
                     OlympicGame og = (OlympicGame) OlympicGames0.get(newOG);
                     og.setCantidadDeAtletasFemeninos(og.getCantidadDeAtletasFemeninos() + 1);

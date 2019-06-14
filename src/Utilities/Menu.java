@@ -1,5 +1,6 @@
 package Utilities;
 
+import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 
 import java.util.Scanner;
@@ -11,7 +12,7 @@ public class Menu{
         System.out.print ( "Selection: " );
     }
 
-    public  Menu() throws ValorNoExisteException {
+    public  Menu() throws ValorNoExisteException, ListaVaciaException {
         Scanner in = new Scanner ( System.in );
 
         displayMenu();
