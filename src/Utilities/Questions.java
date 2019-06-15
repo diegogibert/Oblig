@@ -57,9 +57,6 @@ public class Questions {
 
     public static void Question3() throws ListaVaciaException {
 
-
-
-
             OlympicGame temp1 = (OlympicGame) LoadData.OlympicGames.getAndDelete();
             OlympicGame temp2 = (OlympicGame) LoadData.OlympicGames.getAndDelete();
             while (temp1.equals(temp2)) temp2 = (OlympicGame) LoadData.OlympicGames.getAndDelete();
