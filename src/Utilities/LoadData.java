@@ -36,7 +36,7 @@ public class LoadData {
 
     public static void load() throws ValorNoExisteException, IOException {
         BufferedReader objReader = null;
-
+        //Carga preg 2 abajo
         try {
 
             String strCurrentLine;
@@ -227,8 +227,6 @@ public class LoadData {
                     medallistas.add(new HeapNode(total,c));
                 }
             }
-
-
 
         } catch (IOException e) {
 
