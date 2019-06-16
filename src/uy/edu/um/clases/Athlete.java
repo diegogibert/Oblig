@@ -11,14 +11,13 @@ public class Athlete {
     private NationalOlympicCommittee NOC;
 
 
-    public Athlete(long id, String name, SexType sex, int age, float height, float weight, NationalOlympicCommittee NOC) {
+    public Athlete(long id, String name, SexType sex, int age, float height, float weight) {
         this.id = id;
         this.name = name;
         this.sex = sex;
         this.age=age;
         this.height = height;
         this.weight = weight;
-        this.NOC=NOC;
     }
 
 

@@ -15,20 +15,20 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoadData {
-    protected static BinarySearchTree NationalOlympicCommittees = new BinarySearchTree();
-    protected static BinarySearchTree Athletes = new BinarySearchTree();
+    protected static HashCerrado NationalOlympicCommittees = new HashCerrado<Integer, NationalOlympicCommittee>(6000); //puede ser arbol pero necesito contains
+    protected static BinarySearchTree Athletes = new BinarySearchTree(); //para modificar como le gusta a dani
     protected static HeapMax OlympicGames = new HeapMax<Integer, OlympicGame>(1000000);
     private static HeapMax OlympicGames0 = new HeapMax<Integer, OlympicGame>(1000000);
     private static HeapMax Competitions0F = new HeapMax<Integer, Event>(100000);
     protected static HeapMax CompetitionsF = new HeapMax<Integer, Event>(100000);
     private static HeapMax Competitions0M = new HeapMax<Integer, Event>(100000);
     protected static HeapMax CompetitionsM = new HeapMax<Integer, Event>(1000000);
-    protected static HashCerrado athleteOP = new HashCerrado(500);
-    protected static HeapMax medallistasOro = new HeapMax(1000000);
-    protected static HeapMax medallistasBronce = new HeapMax(1000000);
-    protected static HeapMax medallistasPlata = new HeapMax(1000000);
-    protected static HeapMax medallistas = new HeapMax(1000000);
-    private static int counter = 0;
+    protected static HashCerrado athleteOP = new HashCerrado(135571); // junta todos los datos de los csv
+    protected static HeapMax medallistasOro = new HeapMax(15000);
+    protected static HeapMax medallistasBronce = new HeapMax(15000);
+    protected static HeapMax medallistasPlata = new HeapMax(15000);
+    protected static HeapMax medallistas = new HeapMax(45000);
+    protected static int counter = 0;
     private static int medidor1 = 0;
     private static int medidor2 = 0;
     private static int medidor3 = 0;
@@ -36,9 +36,9 @@ public class LoadData {
     private static int cantidadMedallas = 0;
 
 
-    public static void load() throws ValorNoExisteException, IOException {
+    public static void load() throws ValorNoExisteException, IOException, ListaVaciaException {
         BufferedReader objReader = null;
-        //Carga preg 2 abajo
+
         try {
 
             String strCurrentLine;
@@ -48,12 +48,6 @@ public class LoadData {
             while ((strCurrentLine = objReader.readLine()) != null) {   //anda bien
 
                 String[] vec = strCurrentLine.split(",");
-                NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0], vec[1]);
-                try {
-                    NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
-                } catch (ValorYaExisteException e) {
-                    e.printStackTrace();
-                }
             }
 
 
@@ -66,6 +60,8 @@ public class LoadData {
                 String[] vec = strCurrentLine2.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 long id = Long.parseLong(vec[0].substring(1, vec[0].length() - 1));
+
+
                 int age;
                 try {
                     age = Integer.parseInt(vec[3]);
@@ -85,13 +81,24 @@ public class LoadData {
                     weight = 0;
                 }
                 Team team = new Team(vec[6]);
-                NationalOlympicCommittee AtheletesNOC = new NationalOlympicCommittee(vec[6], vec[7]);
+                // NationalOlympicCommittee AtheletesNOC = new NationalOlympicCommittee(vec[6], vec[7]);
                 SexType sex = SexType.NA;
                 if ((vec[2].substring(1, vec[2].length() - 1)).equals("F")) {
                     sex = SexType.F;
                 } else if ((vec[2].substring(1, vec[2].length() - 1)).equals("M")) {
                     sex = SexType.M;
                 }
+
+                Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight);
+
+                if(!NationalOlympicCommittees.belongs(vec[7])){
+                    ArrayList atle = new ArrayList<Athlete>();
+                    NationalOlympicCommittees.insert(vec[7], new NationalOlympicCommittee(atle, vec[7], vec[6]));
+                } else {
+                    NationalOlympicCommittee noc = (NationalOlympicCommittee) NationalOlympicCommittees.get(vec[7]);
+                    noc.getAtleta().add(newAthlete);
+                }
+
 
                 int i = 0;
                 i++;
@@ -122,7 +129,6 @@ public class LoadData {
                     medal = MedalType.BRONZE;
                 }
 
-                Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
                 try {
                     Athletes.insert(newAthlete.getId(), newAthlete);
                 } catch (ValorYaExisteException e) {
@@ -146,8 +152,8 @@ public class LoadData {
                     try {
                         competidoresPorAno.insert(year, cantidadCompetidores + 1);
                         cantidadCompetidores = 0;
-                        System.out.println(year + "competidores" + competidoresPorAno.find(year));
-                    } catch (ValorYaExisteException | ListaVaciaException h) {
+                      //  System.out.println(year + "competidores" + competidoresPorAno.find(year));
+                    } catch (ValorYaExisteException h) {
                     }
                 }
 
@@ -164,8 +170,8 @@ public class LoadData {
                         try {
                             medallasPorAno.insert(year, cantidadMedallas + 1);
                             cantidadMedallas = 0;
-                            System.out.println(medallasPorAno.find(year));
-                        } catch (ValorYaExisteException | ListaVaciaException h) {
+                          //  System.out.println(medallasPorAno.find(year));
+                        } catch (ValorYaExisteException h) {
                         }
                     }
                 }
