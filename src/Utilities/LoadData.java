@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class LoadData {
-    protected static HashCerrado NationalOlympicCommittees = new HashCerrado<Integer, NationalOlympicCommittee>(6000); //puede ser arbol pero necesito contains
+    protected static HashCerrado NationalOlympicCommittees = new HashCerrado(6000); //puede ser arbol pero necesito contains
     protected static BinarySearchTree Athletes = new BinarySearchTree(); //para modificar como le gusta a dani
     protected static HeapMax OlympicGames = new HeapMax<Integer, OlympicGame>(1000000);
     private static HeapMax OlympicGames0 = new HeapMax<Integer, OlympicGame>(1000000);
@@ -41,13 +41,13 @@ public class LoadData {
 
         try {
 
-            String strCurrentLine;
+            String Line;
 
             objReader = new BufferedReader(new FileReader("noc_regions.csv"));
 
-            while ((strCurrentLine = objReader.readLine()) != null) {   //anda bien
-
-                String[] vec = strCurrentLine.split(",");
+            while ((Line = objReader.readLine()) != null) {   //anda bien
+                String[] vec = Line.split(",");
+                NationalOlympicCommittees.insert(vec[0],vec[1]);
             }
 
 
@@ -90,15 +90,6 @@ public class LoadData {
                 }
 
                 Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight);
-
-                if(!NationalOlympicCommittees.belongs(vec[7])){
-                    ArrayList atle = new ArrayList<Athlete>();
-                    NationalOlympicCommittees.insert(vec[7], new NationalOlympicCommittee(atle, vec[7], vec[6]));
-                } else {
-                    NationalOlympicCommittee noc = (NationalOlympicCommittee) NationalOlympicCommittees.get(vec[7]);
-                    noc.getAtleta().add(newAthlete);
-                }
-
 
                 int i = 0;
                 i++;

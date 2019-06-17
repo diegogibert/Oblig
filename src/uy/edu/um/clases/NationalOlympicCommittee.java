@@ -1,18 +1,14 @@
 package uy.edu.um.clases;
 
-import java.util.ArrayList;
-
 public class NationalOlympicCommittee {
 
     private String noc;
     private String region;
-    private ArrayList<Athlete> atleta;
     private int medallaOro;
     private int medallaPlata;
     private int medallaBronce;
 
-    public NationalOlympicCommittee(ArrayList<Athlete> atleta, String noc, String region) {
-        this.atleta = atleta;
+    public NationalOlympicCommittee( String noc, String region) {
         this.noc = noc;
         this.region = region;
     }
@@ -49,11 +45,5 @@ public class NationalOlympicCommittee {
         this.medallaBronce = medallaBronce;
     }
 
-    public ArrayList<Athlete> getAtleta() {
-        return atleta;
-    }
 
-    public void setAtleta(ArrayList<Athlete> atleta) {
-        this.atleta = atleta;
-    }
 }

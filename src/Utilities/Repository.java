@@ -14,7 +14,8 @@ public class Repository {
     protected static HeapMax medallasTotales = new HeapMax(230);
 
     public static void preg2() throws ValorNoExisteException, ListaVaciaException {
-        //Iterar sobre el hash sumar las medallas del atleta y poner en un heap
+
+
     }
 
 
