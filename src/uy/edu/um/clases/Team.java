@@ -3,12 +3,14 @@ package uy.edu.um.clases;
 import BinarySearchTree.BinarySearchTree;
 import BinarySearchTree.ValorYaExisteException;
 
+import java.util.Objects;
+
 public class Team {
 
     private String name;
 
-    protected static BinarySearchTree competidoresPorAno= new BinarySearchTree();
-    protected static BinarySearchTree medallasPorAno= new BinarySearchTree();
+    private static BinarySearchTree competidoresPorAno= new BinarySearchTree();
+    private static BinarySearchTree medallasPorAno= new BinarySearchTree();
 
     public BinarySearchTree getCompetidoresPorAno() {
         return competidoresPorAno;
@@ -18,16 +20,12 @@ public class Team {
         return medallasPorAno;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setCompetidoresPorAno(int ano, int competidoresPorAno) throws ValorYaExisteException {
-        this.competidoresPorAno.insert(ano,competidoresPorAno);
+        Team.competidoresPorAno.insert(ano,competidoresPorAno);
     }
 
     public void setMedallasPorAno(int ano, int medallasPorAno) throws ValorYaExisteException {
-        this.medallasPorAno.insert(ano,medallasPorAno);
+        Team.medallasPorAno.insert(ano,medallasPorAno);
     }
 
     public Team(String name) {
@@ -37,4 +35,14 @@ public class Team {
     public String getName() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Team team = (Team) o;
+        return Objects.equals(name, team.name);
+    }
+
+
 }

@@ -16,10 +16,6 @@ public class Event {
         return cantidadHombres;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public void setCantidadMujeres(int cantidadMujeres) {
         this.cantidadMujeres = cantidadMujeres;
     }

@@ -1,6 +1,6 @@
 package uy.edu.um.clases;
 
-import double_linked_list.MyList;
+
 
 public class Athlete {
 
@@ -11,9 +11,7 @@ public class Athlete {
     private float height;
     private float weight;
     private NationalOlympicCommittee NOC;
-    int BronzeMedals=0;
-    int SilverMedals=0;
-    int GoldMedals=0;
+
 
 
     public Athlete(long id, String name, SexType sex, int age, float height, float weight,NationalOlympicCommittee NOC) {
@@ -27,33 +25,9 @@ public class Athlete {
     }
 
 
-    public NationalOlympicCommittee getNOC() {
-        return NOC;
-    }
-
-    public int getBronzeMedals() {
-        return BronzeMedals;
-    }
-
-    public int getSilverMedals() {
-        return SilverMedals;
-    }
-
-    public int getGoldMedals() {
-        return GoldMedals;
-    }
-
-    public void setBronzeMedals(int bronzeMedals) {
-        BronzeMedals = bronzeMedals;
-    }
-
-    public void setSilverMedals(int silverMedals) {
-        SilverMedals = silverMedals;
-    }
-
-    public void setGoldMedals(int goldMedals) {
-        GoldMedals = goldMedals;
-    }
+//    public NationalOlympicCommittee getNOC() {
+//        return NOC;
+//    }
 
     public long getId() {
         return id;
@@ -67,15 +41,15 @@ public class Athlete {
         return sex;
     }
 
-    public float getHeight() {
-        return height;
-    }
-
-    public float getWeight() {
-        return weight;
-    }
-
-    public int getAge() {
-        return age;
-    }
+//    public float getHeight() {
+//        return height;
+//    }
+//
+//    public float getWeight() {
+//        return weight;
+//    }
+//
+//    public int getAge() {
+//        return age;
+//    }
 }
