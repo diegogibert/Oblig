@@ -77,6 +77,18 @@ class Questions {
         }
     }
 
+    public static void Question2() throws ListaVaciaException, ValorNoExisteException {
+        Scanner di = new Scanner ( System.in );
+        System.out.println("Oro(O), Plata(P), Bronce(B) o Todas(T)?");
+        String i=di.next();
+        if(i.equals("O")){
+            Repository.preg2();
+
+        } else {
+            System.out.println("Valor invalido");
+            Question1();
+        }
+    }
 
     static void Question3() throws ListaVaciaException {
         System.out.println("--------------------Pregunta 3-------------------");

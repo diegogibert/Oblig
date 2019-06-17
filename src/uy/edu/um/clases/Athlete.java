@@ -1,6 +1,6 @@
 package uy.edu.um.clases;
 
-
+import double_linked_list.MyList;
 
 public class Athlete {
 
@@ -14,7 +14,7 @@ public class Athlete {
 
 
 
-    public Athlete(long id, String name, SexType sex, int age, float height, float weight,NationalOlympicCommittee NOC) {
+    public Athlete(long id, String name, SexType sex, int age, float height, float weight) {
         this.id = id;
         this.name = name;
         this.sex = sex;
@@ -25,9 +25,9 @@ public class Athlete {
     }
 
 
-//    public NationalOlympicCommittee getNOC() {
-//        return NOC;
-//    }
+    public NationalOlympicCommittee getNOC() {
+        return NOC;
+    }
 
     public long getId() {
         return id;

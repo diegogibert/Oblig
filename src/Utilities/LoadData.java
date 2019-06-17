@@ -37,24 +37,18 @@ public class LoadData {
     static ArrayList<Team> teams = new ArrayList<>(1000);
 
 
-    public static void load() throws ValorNoExisteException, IOException {
+    public static void load() throws ValorNoExisteException, IOException, ListaVaciaException {
         BufferedReader objReader = null;
 
         try {
 
-            String strCurrentLine;
+            String Line;
 
             objReader = new BufferedReader(new FileReader("noc_regions.csv"));
 
-            while ((strCurrentLine = objReader.readLine()) != null) {   //anda bien
-
-                String[] vec = strCurrentLine.split(",");
-                NationalOlympicCommittee temp = new NationalOlympicCommittee(vec[0], vec[1]);
-                try {
-                    NationalOlympicCommittees.insert(temp.getNoc(), temp.getRegion());
-                } catch (ValorYaExisteException e) {
-                    e.printStackTrace();
-                }
+            while ((Line = objReader.readLine()) != null) {   //anda bien
+                String[] vec = Line.split(",");
+                NationalOlympicCommittees.insert(vec[0],vec[1]);
             }
 
 
@@ -67,6 +61,8 @@ public class LoadData {
                 String[] vec = strCurrentLine2.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 long id = Long.parseLong(vec[0].substring(1, vec[0].length() - 1));
+
+
                 int age;
                 try {
                     age = Integer.parseInt(vec[3]);
@@ -90,6 +86,7 @@ public class LoadData {
                 if (!teams.contains(team)) teams.add(team);
 
                 NationalOlympicCommittee AtheletesNOC = new NationalOlympicCommittee(vec[6], vec[7]);
+                // NationalOlympicCommittee AtheletesNOC = new NationalOlympicCommittee(vec[6], vec[7]);
                 SexType sex = SexType.NA;
                 if ((vec[2].substring(1, vec[2].length() - 1)).equals("F")) {
                     sex = SexType.F;
@@ -97,6 +94,10 @@ public class LoadData {
                     sex = SexType.M;
                 }
 
+                Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight);
+
+                int i = 0;
+                i++;
 
                 int year;
                 try {
@@ -128,7 +129,6 @@ public class LoadData {
                         break;
                 }
 
-                Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight, AtheletesNOC);
                 try {
                     Athletes.insert(newAthlete.getId(), newAthlete);
                 } catch (ValorYaExisteException ignored) {
@@ -150,7 +150,7 @@ public class LoadData {
 //                        System.out.println(competidoresPorAno.find(2001));
 //                    } catch (ListaVaciaException e) {
 //                        e.printStackTrace();
-//                    }  A TODOS LOS ANOS LE AGREGA 
+//                    }  A TODOS LOS ANOS LE AGREGA
 
                     try {
                         team.setCompetidoresPorAno(year, 1);
