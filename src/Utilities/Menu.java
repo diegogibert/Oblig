@@ -35,30 +35,36 @@ public class Menu {
         switch (in.nextInt()) {
             case 1:
                 Questions.Question1();
-                new Menu();
+                displayMenu();
+                selection();
                 break;
             case 2:
                 System.out.println("result 2");
-                new Menu();
+                displayMenu();
+                selection();
                 break;
             case 3:
                 Questions.Question3();
-                new Menu();
+                displayMenu();
+                selection();
                 break;
             case 4:
                 Questions.Question4();
-                new Menu();
+                displayMenu();
+                selection();
                 break;
             case 5:
                 Questions.Question5();
-                new Menu();
+                displayMenu();
+                selection();
                 break;
             case 6:
                 break;
 
             default:
                 System.err.println("Ingrese una opcion Valida");
-                new Menu();
+                displayMenu();
+                selection();
                 break;
 
         }

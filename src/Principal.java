@@ -22,7 +22,7 @@ public class Principal {
                     synchronized (Principal.class) {
                         finished = true;
                     }
-                } catch (ValorNoExisteException | IOException | NullPointerException e) {
+                } catch (NullPointerException | ValorNoExisteException | IOException | ListaVaciaException e) {
                    e.printStackTrace();
                 }
             }

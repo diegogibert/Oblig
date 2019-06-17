@@ -48,7 +48,11 @@ public class LoadData {
 
             while ((Line = objReader.readLine()) != null) {   //anda bien
                 String[] vec = Line.split(",");
-                NationalOlympicCommittees.insert(vec[0],vec[1]);
+                try {
+                    NationalOlympicCommittees.insert(vec[0],vec[1]);
+                } catch (ValorYaExisteException e) {
+                    e.printStackTrace();
+                }
             }
 
 
@@ -106,7 +110,7 @@ public class LoadData {
                     year = 0;
                 }
                 SeasonType st;
-                if (vec[10].equals("Summer")) {
+                if (vec[10].substring(1,vec[10].length()-1).equals("Summer")) {
                     st = SeasonType.SUMMER;
                 } else {
                     st = SeasonType.WINTER;
