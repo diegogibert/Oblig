@@ -13,6 +13,7 @@ class Questions {
         MedalType m = MedalType.NA;
         String t = "N";
         Scanner di = new Scanner(System.in);
+
         System.out.println("--------------------Pregunta 1-------------------");
         System.out.println(" ");
         System.out.println("-------------------Seleccione una opcion------------------");
@@ -46,33 +47,34 @@ class Questions {
                 Question1();
                 break;
         }
-        if (m.equals(MedalType.GOLD)) {
-            for (int j = 0; j < 10; j++) {
-                Long id = LoadData.medallistasOro.getAndDelete();
-                AthleteOlympicParticipation at = LoadData.athleteOP.get(id);
-                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad de Oros: " + at.getCantidadOros() + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedalG() + " Año max: " + at.getLastMedalG());
+        if(m.equals(MedalType.GOLD)){
+            Repository.preg1();
+            for (int j = 0; j <10 ; j++) {
+                Athlete temp = Repository.medallasOro.getAndDelete();
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo "+ temp.getSex() + " Cantidad Oros: " + temp.getOros());
             }
         }
-        if (m.equals(MedalType.SILVER)) {
-            for (int j = 0; j < 10; j++) {
-                Long id = LoadData.medallistasPlata.getAndDelete();
-                AthleteOlympicParticipation at = LoadData.athleteOP.get(id);
-                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad de Platas: " + at.getCantidadPlatas() + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedalS() + " Año max: " + at.getLastMedalS());
+        if(m.equals(MedalType.BRONZE)){
+            Repository.preg1();
+            for (int j = 0; j <10 ; j++) {
+                Athlete temp = Repository.medallasBronce.getAndDelete();
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo "+ temp.getSex() + " Cantidad Bronces: " + temp.getBroonces());
             }
         }
-        if (m.equals(MedalType.BRONZE)) {
-            for (int j = 0; j < 10; j++) {
-                Long id = LoadData.medallistasBronce.getAndDelete();
-                AthleteOlympicParticipation at = LoadData.athleteOP.get(id);
-                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad de Bronces: " + at.getCantidadBronces() + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + at.getFirstMedalB() + " Año max: " + at.getLastMedalB());
+        if(m.equals(MedalType.SILVER)){
+            Repository.preg1();
+            for (int j = 0; j <10 ; j++) {
+                Athlete temp = Repository.medallasPlata.getAndDelete();
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo "+ temp.getSex() +" Cantidad Platas: " + temp.getPlatas());
             }
         }
-        if (t.equals("T")) {
-            for (int j = 0; j < 10; j++) {
-                Long id = LoadData.medallistas.getAndDelete();
-                AthleteOlympicParticipation at = LoadData.athleteOP.get(id);
-                int total = at.getCantidadOros() + at.getCantidadBronces() + at.getCantidadPlatas();
-                System.out.println(" Nombre Atleta: " + at.getAthlete().getName() + " Cantidad Total: " + total + " Sexo del altleta: " + at.getAthlete().getSex() + " Año min: " + " Año max: ");
+        if(t=="T"){
+            Repository.preg1();
+            for (int j = 0; j <10 ; j++) {
+                Athlete temp = Repository.medallasTotales.getAndDelete();
+                int totales = 0;
+                totales = temp.getOros() + temp.getPlatas() + temp.getBroonces();
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo "+ temp.getSex() +" Cantidad Medallas Totales: " + totales);
             }
         }
     }

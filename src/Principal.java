@@ -3,7 +3,6 @@ import Utilities.Menu;
 import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 
 
@@ -22,7 +21,7 @@ public class Principal {
                     synchronized (Principal.class) {
                         finished = true;
                     }
-                } catch (NullPointerException | ValorNoExisteException | IOException | ListaVaciaException e) {
+                } catch (NullPointerException e) {
                    e.printStackTrace();
                 }
             }

@@ -1,125 +1,60 @@
 package uy.edu.um.clases;
 
-import java.util.ArrayList;
-
 public class AthleteOlympicParticipation {
 
-    private ArrayList<MedalType> medal;
-    private Athlete athlete;
-    private ArrayList<Sport> sport;
-    private ArrayList<Event> event;
-    private ArrayList<City> city;
-    private ArrayList<OlympicGame> OG;
-    private int cantidadOros = 0;
-    private int cantidadPlatas = 0;
-    private int cantidadBronces = 0;
-    private int firstMedalG;
-    private int lastMedalG;
-    private int FirstMedalS;
-    private int lastMedalS;
-    private int firstMedalB;
-    private int lastMedalB;
+    private MedalType medal;
+    private Sport sport;
+    private Event event;
+    private City city;
+    private OlympicGame OG;
 
-    public AthleteOlympicParticipation(ArrayList<MedalType> medal, Athlete athlete, ArrayList<Sport> sport, ArrayList<Event> event, ArrayList<City> city, ArrayList<OlympicGame> OG) {
+
+    public AthleteOlympicParticipation(MedalType medal, Sport sport, Event event, City city, OlympicGame OG) {
         this.medal = medal;
-        this.athlete = athlete;
         this.sport = sport;
         this.event = event;
         this.city = city;
         this.OG = OG;
     }
 
-
-    public Athlete getAthlete() {
-        return athlete;
+    public MedalType getMedal() {
+        return medal;
     }
 
-    public ArrayList<Sport> getSport() {
+    public void setMedal(MedalType medal) {
+        this.medal = medal;
+    }
+
+    public Sport getSport() {
         return sport;
     }
 
-    public ArrayList<Event> getEvent() {
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
+
+    public Event getEvent() {
         return event;
     }
 
-    public ArrayList<City> getCity() {
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+
+    public City getCity() {
         return city;
     }
 
-    public ArrayList<OlympicGame> getOG() {
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public OlympicGame getOG() {
         return OG;
     }
 
-    public int getCantidadOros() {
-        return cantidadOros;
-    }
-
-    public int getCantidadPlatas() {
-        return cantidadPlatas;
-    }
-
-    public int getCantidadBronces() {
-        return cantidadBronces;
-    }
-
-    public void setCantidadOros(int cantidadOros) {
-        this.cantidadOros = cantidadOros;
-    }
-
-    public void setCantidadPlatas(int cantidadPlatas) {
-        this.cantidadPlatas = cantidadPlatas;
-    }
-
-    public void setCantidadBronces(int cantidadBronces) {
-        this.cantidadBronces = cantidadBronces;
-    }
-
-    public int getFirstMedalG() {
-        return firstMedalG;
-    }
-
-    public void setFirstMedalG(int firstMedalG) {
-        this.firstMedalG = firstMedalG;
-    }
-
-    public int getLastMedalG() {
-        return lastMedalG;
-    }
-
-    public void setLastMedalG(int lastMedalG) {
-        this.lastMedalG = lastMedalG;
-    }
-
-    public int getFirstMedalS() {
-        return FirstMedalS;
-    }
-
-    public void setFirstMedalS(int firstMedalS) {
-        FirstMedalS = firstMedalS;
-    }
-
-    public int getLastMedalS() {
-        return lastMedalS;
-    }
-
-    public void setLastMedalS(int lastMedalS) {
-        this.lastMedalS = lastMedalS;
-    }
-
-    public int getFirstMedalB() {
-        return firstMedalB;
-    }
-
-    public void setFirstMedalB(int firstMedalB) {
-        this.firstMedalB = firstMedalB;
-    }
-
-    public int getLastMedalB() {
-        return lastMedalB;
-    }
-
-    public void setLastMedalB(int lastMedalB) {
-        this.lastMedalB = lastMedalB;
+    public void setOG(OlympicGame OG) {
+        this.OG = OG;
     }
 }
 
