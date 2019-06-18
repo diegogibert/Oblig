@@ -1,5 +1,6 @@
 package Utilities;
 
+import BinarySearchTree.ValorYaExisteException;
 import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 
@@ -29,7 +30,7 @@ public class Menu {
 
     }
 
-    public void selection() throws ValorNoExisteException, ListaVaciaException {
+    public void selection() throws ValorNoExisteException, ListaVaciaException, ValorYaExisteException {
         Scanner in = new Scanner(System.in);
 
         switch (in.nextInt()) {
@@ -49,7 +50,7 @@ public class Menu {
                 selection();
                 break;
             case 4:
-                Questions.Question4();
+               Questions.Question4();
                 displayMenu();
                 selection();
                 break;

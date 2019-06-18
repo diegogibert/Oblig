@@ -7,15 +7,18 @@ public class AthleteOlympicParticipation {
     private Event event;
     private City city;
     private OlympicGame OG;
+    private Team team;
 
-
-    public AthleteOlympicParticipation(MedalType medal, Sport sport, Event event, City city, OlympicGame OG) {
+    public AthleteOlympicParticipation(MedalType medal, Sport sport, Event event, City city, OlympicGame OG,Team team) {
         this.medal = medal;
         this.sport = sport;
         this.event = event;
         this.city = city;
         this.OG = OG;
+        this.team=team;
     }
+
+    public Team getTeam() { return team; }
 
     public MedalType getMedal() {
         return medal;

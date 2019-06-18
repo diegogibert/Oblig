@@ -1,3 +1,4 @@
+import BinarySearchTree.ValorYaExisteException;
 import Utilities.LoadData;
 import Utilities.Menu;
 import double_linked_list.ListaVaciaException;
@@ -52,12 +53,12 @@ public class Principal {
                     System.out.println("Selection:");
                     menu.selection();
 
-                } catch (InputMismatchException | ValorNoExisteException | ListaVaciaException e) {
+                } catch (InputMismatchException | ValorNoExisteException | ListaVaciaException| ValorYaExisteException e) {
                     System.out.println("Ingrese una opcion valida");
                     try {
                         new Menu();
                         menu.selection();
-                    } catch (ValorNoExisteException | ListaVaciaException ex) {
+                    } catch (ValorNoExisteException | ListaVaciaException| ValorYaExisteException ex) {
                         ex.printStackTrace();
                     }
                 }
