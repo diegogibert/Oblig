@@ -24,6 +24,7 @@ public class Repository {
     static HeapMax<Integer, Athlete> medallasBronce = new HeapMax<>(1000000);
     static HeapMax<Integer, Athlete> medallasPlata = new HeapMax<>(1000000);
     static HeapMax<Integer, Athlete> medallasTotales = new HeapMax<>(1000000);
+    static HeapMax regionMedalla = new HeapMax(1000000);
 
     public static void preg1O() throws ValorNoExisteException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
@@ -104,7 +105,14 @@ public class Repository {
     }
 
     public static void preg2() throws ValorNoExisteException, ListaVaciaException {
-
+        for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            Athlete temp = LoadData.atletas.get(i);
+            String temp2 = temp.getNOC().getRegion();
+            NationalOlympicCommittee NOCTemp = LoadData.NationalOlympicCommittees.find(temp2);
+            NOCTemp.setMedallaOro(temp.getOros()+NOCTemp.getMedallaOro());
+            NOCTemp.setMedallaPlata(temp.getPlatas() + NOCTemp.getMedallaPlata());
+            NOCTemp.setMedallaBronce(temp.getBroonces() + NOCTemp.getMedallaBronce());
+        }
 
     }
 

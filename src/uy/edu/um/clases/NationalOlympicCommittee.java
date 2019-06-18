@@ -4,9 +4,9 @@ public class NationalOlympicCommittee {
 
     private String noc;
     private String region;
-    private int medallaOro;
-    private int medallaPlata;
-    private int medallaBronce;
+    private int medallaOro = 0;
+    private int medallaPlata = 0;
+    private int medallaBronce = 0;
 
     public NationalOlympicCommittee( String noc, String region) {
         this.noc = noc;

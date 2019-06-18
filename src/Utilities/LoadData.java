@@ -3,6 +3,7 @@ package Utilities;
 import BinarySearchTree.BinarySearchTree;
 import BinarySearchTree.ValorYaExisteException;
 import Hash.HashCerrado;
+import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 import uy.edu.um.clases.*;
 import java.io.BufferedReader;
@@ -34,6 +35,7 @@ public class LoadData {
                         e.printStackTrace();
                     }
                 }
+                //tirar el notify
             } catch (IOException e) {
                 e.printStackTrace();
             } finally {
@@ -138,12 +140,12 @@ public class LoadData {
                     }
 
                     OlympicGame newOG = new OlympicGame(vec[8], year, st);
-
+                    //tirar el wait() y cambiar las sentencias de if y else
                     //Carga datos atletas y participaciones
                     if (!atletas.belongs(id)) {
                         Athlete newAthlete = new Athlete(id, vec[1], sex, age, height, weight);
                         newAthlete.getAtleteOP().add(new AthleteOlympicParticipation(medal, sport, event, city, newOG, team));
-//                newAthlete.setNOC(NationalOlympicCommittees.find(vec[7]));
+                        newAthlete.setNOC(NationalOlympicCommittees.find(vec[7])); // tirar el wait y notify
                         atletas.insert(id, newAthlete);
 
                     } else {
@@ -153,7 +155,7 @@ public class LoadData {
 
 
                 }
-            } catch (IOException | ValorNoExisteException e) {
+            } catch (IOException | ValorNoExisteException | ListaVaciaException e) {
                 e.printStackTrace();
             } finally {
 
