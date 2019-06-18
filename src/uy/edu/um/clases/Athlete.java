@@ -15,7 +15,15 @@ public class Athlete {
     private int oros = 0;
     private int platas = 0;
     private int broonces = 0;
-
+    private int totales = 0;
+    private int lastMedalGold = 0;
+    private int firstMedalGold = 0;
+    private int lastMedalSilver = 0;
+    private int firstMedalSilver = 0;
+    private int lastMedalBronze = 0;
+    private int firstMedalBronze = 0;
+    private int lastMedalTotal = 0;
+    private int firstMedalTotal = 0;
 
     public Athlete(int id, String name, SexType sex, int age, float height, float weight) {
         this.id = id;
@@ -73,5 +81,77 @@ public class Athlete {
 
     public void setBroonces(int broonces) {
         this.broonces = broonces;
+    }
+
+    public int getTotales() {
+        return totales;
+    }
+
+    public void setTotales(int totales) {
+        this.totales = totales;
+    }
+
+    public int getLastMedalGold() {
+        return lastMedalGold;
+    }
+
+    public void setLastMedalGold(int lastMedalGold) {
+        this.lastMedalGold = lastMedalGold;
+    }
+
+    public int getFirstMedalGold() {
+        return firstMedalGold;
+    }
+
+    public void setFirstMedalGold(int firstMedalGold) {
+        this.firstMedalGold = firstMedalGold;
+    }
+
+    public int getLastMedalSilver() {
+        return lastMedalSilver;
+    }
+
+    public void setLastMedalSilver(int lastMedalSilver) {
+        this.lastMedalSilver = lastMedalSilver;
+    }
+
+    public int getFirstMedalSilver() {
+        return firstMedalSilver;
+    }
+
+    public void setFirstMedalSilver(int firstMedalSilver) {
+        this.firstMedalSilver = firstMedalSilver;
+    }
+
+    public int getLastMedalBronze() {
+        return lastMedalBronze;
+    }
+
+    public void setLastMedalBronze(int lastMedalBronze) {
+        this.lastMedalBronze = lastMedalBronze;
+    }
+
+    public int getFirstMedalBronze() {
+        return firstMedalBronze;
+    }
+
+    public void setFirstMedalBronze(int firstMedalBronze) {
+        this.firstMedalBronze = firstMedalBronze;
+    }
+
+    public int getLastMedalTotal() {
+        return lastMedalTotal;
+    }
+
+    public void setLastMedalTotal(int lastMedalTotal) {
+        this.lastMedalTotal = lastMedalTotal;
+    }
+
+    public int getFirstMedalTotal() {
+        return firstMedalTotal;
+    }
+
+    public void setFirstMedalTotal(int firstMedalTotal) {
+        this.firstMedalTotal = firstMedalTotal;
     }
 }

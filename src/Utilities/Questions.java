@@ -49,33 +49,31 @@ class Questions {
                 break;
         }
         if (m.equals(MedalType.GOLD)) {
-            Repository.preg1();
+            Repository.preg1O();
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasOro.getAndDelete();
-                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Oros: " + temp.getOros());
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Oros: " + temp.getOros() + " Año max: " + temp.getLastMedalGold());
             }
         }
         if (m.equals(MedalType.BRONZE)) {
-            Repository.preg1();
+            Repository.preg1B();
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasBronce.getAndDelete();
-                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Bronces: " + temp.getBroonces());
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Bronces: " + temp.getBroonces()+ " Año max: " + temp.getLastMedalBronze());
             }
         }
         if (m.equals(MedalType.SILVER)) {
-            Repository.preg1();
+            Repository.preg1P();
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasPlata.getAndDelete();
-                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Platas: " + temp.getPlatas());
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Platas: " + temp.getPlatas() + " Año max: " + temp.getLastMedalSilver());
             }
         }
         if (t == "T") {
-            Repository.preg1();
+            Repository.preg1T();
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasTotales.getAndDelete();
-                int totales = 0;
-                totales = temp.getOros() + temp.getPlatas() + temp.getBroonces();
-                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Medallas Totales: " + totales);
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Medallas Totales: " + temp.getTotales() + " Año max: " + temp.getLastMedalTotal());
             }
         }
     }

@@ -1,7 +1,6 @@
 package Utilities;
 
 
-import BinarySearchTree.BinarySearchTree;
 import BinarySearchTree.ValorYaExisteException;
 import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
@@ -13,10 +12,6 @@ import java.util.ArrayList;
 
 public class Repository {
 
-    static HeapMax<Integer, Athlete> medallasOro = new HeapMax<>(1000000);
-    static HeapMax<Integer, Athlete> medallasBronce = new HeapMax<>(1000000);
-    static HeapMax<Integer, Athlete> medallasPlata = new HeapMax<>(1000000);
-    static HeapMax<Integer, Athlete> medallasTotales = new HeapMax<>(1000000);
     static int totales;
     static HeapMax<Integer, OlympicGame> OlympicGames = new HeapMax<>(150000);
     static HeapMax<Integer, OlympicGame> OlympicGames0 = new HeapMax<>(150000);
@@ -25,12 +20,15 @@ public class Repository {
     private static HeapMax<Integer, Event> Competitions0M = new HeapMax<>(300000);
     static HeapMax<Integer, Event> CompetitionsM = new HeapMax<>(300000);
     static ArrayList<Team> teams = new ArrayList<>(2000);
+    static HeapMax<Integer, Athlete> medallasOro = new HeapMax<>(1000000);
+    static HeapMax<Integer, Athlete> medallasBronce = new HeapMax<>(1000000);
+    static HeapMax<Integer, Athlete> medallasPlata = new HeapMax<>(1000000);
+    static HeapMax<Integer, Athlete> medallasTotales = new HeapMax<>(1000000);
 
-    public static void preg1() throws ValorNoExisteException {
+    public static void preg1O() throws ValorNoExisteException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
-            temp.setBroonces(0);
-            temp.setPlatas(0);
+
             temp.setOros(0);
             totales = 0;
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
@@ -38,14 +36,7 @@ public class Repository {
                 if (medal.equals(MedalType.GOLD)) {
                     int oros = temp.getOros() + 1;
                     temp.setOros(oros);
-                }
-                if (medal.equals(MedalType.SILVER)) {
-                    int platas = temp.getPlatas() + 1;
-                    temp.setPlatas(platas);
-                }
-                if (medal.equals(MedalType.BRONZE)) {
-                    int bronces = temp.getBroonces() + 1;
-                    temp.setBroonces(bronces);
+                    temp.setLastMedalGold(temp.getAtleteOP().get(j).getOG().getYear());
                 }
             }
         }
@@ -53,18 +44,62 @@ public class Repository {
             Athlete temp = LoadData.atletas.get(i);
             medallasOro.add(new HeapNode<>(temp.getOros(), temp));
         }
+    }
+
+    public static void preg1B() throws ValorNoExisteException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
-            medallasPlata.add(new HeapNode<>(temp.getPlatas(), temp));
+            temp.setBroonces(0);
+            for (int j = 0; j < temp.getAtleteOP().size(); j++) {
+                MedalType medal = temp.getAtleteOP().get(j).getMedal();
+                if (medal.equals(MedalType.BRONZE)) {
+                    int bronces = temp.getBroonces() + 1;
+                    temp.setBroonces(bronces);
+                    temp.setLastMedalBronze(temp.getAtleteOP().get(j).getOG().getYear());
+                }
+            }
         }
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
             medallasBronce.add(new HeapNode<>(temp.getBroonces(), temp));
         }
+    }
+
+    public static void preg1P() throws ValorNoExisteException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
-            totales = temp.getOros() + temp.getPlatas() + temp.getBroonces();
-            medallasTotales.add(new HeapNode<>(totales, temp));
+            temp.setPlatas(0);
+            for (int j = 0; j < temp.getAtleteOP().size(); j++) {
+                MedalType medal = temp.getAtleteOP().get(j).getMedal();
+                if (medal.equals(MedalType.SILVER)) {
+                    int platas = temp.getPlatas() + 1;
+                    temp.setPlatas(platas);
+                    temp.setLastMedalSilver(temp.getAtleteOP().get(j).getOG().getYear());
+                }
+            }
+        }
+        for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            Athlete temp = LoadData.atletas.get(i);
+            medallasPlata.add(new HeapNode<>(temp.getPlatas(), temp));
+        }
+    }
+
+    public static void preg1T() throws ValorNoExisteException {
+        for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            Athlete temp = LoadData.atletas.get(i);
+            temp.setTotales(0);
+            for (int j = 0; j < temp.getAtleteOP().size(); j++) {
+                MedalType medal = temp.getAtleteOP().get(j).getMedal();
+                if (medal.equals(MedalType.SILVER) || medal.equals(MedalType.BRONZE) || medal.equals(MedalType.GOLD)) {
+                    int total = temp.getTotales() + 1;
+                    temp.setTotales(total);
+                    temp.setLastMedalTotal(temp.getAtleteOP().get(j).getOG().getYear());
+                }
+            }
+        }
+        for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            Athlete temp = LoadData.atletas.get(i);
+            medallasTotales.add(new HeapNode<>(temp.getTotales(), temp));
         }
     }
 
