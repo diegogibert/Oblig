@@ -10,60 +10,54 @@ import java.util.InputMismatchException;
 public class Principal {
     private static boolean finished;
 
-    public static void main(String[] args) throws ValorNoExisteException, ListaVaciaException, InterruptedException {
+    public static void main(String[] args) throws  InterruptedException {
 
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    LoadData.load();
+        Thread thread = new Thread(() -> {
+            try {
+                LoadData.load();
 
-                    synchronized (Principal.class) {
-                        finished = true;
-                    }
-                } catch (NullPointerException e) {
-                   e.printStackTrace();
+                synchronized (Principal.class) {
+                    finished = true;
                 }
+            } catch (NullPointerException e) {
+               e.printStackTrace();
             }
         });
 
-        Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
+        Thread thread2 = new Thread(() -> {
 
-                Menu menu = new Menu();
-                menu.displayMenu();
+            Menu menu = new Menu();
+            menu.displayMenu();
 
-                try {
-                    while (true) {
-                        synchronized (Principal.class) {
-                            if (!finished) {
-                                System.out.print("Esperando... ");
+            try {
+                while (true) {
+                    synchronized (Principal.class) {
+                        if (!finished) {
+                            System.out.print("Esperando... ");
 
-                                try {
-                                    Thread.sleep(2000);
-                                } catch (InterruptedException e) {
-                                    e.printStackTrace();
-                                }
-                            } else break;
-                        }
-                    }
-                    System.out.println(" ");
-                    System.out.println("Selection:");
-                    menu.selection();
-
-                } catch (InputMismatchException | ValorNoExisteException | ListaVaciaException| ValorYaExisteException e) {
-                    System.out.println("Ingrese una opcion valida");
-                    try {
-                        new Menu();
-                        menu.selection();
-                    } catch (ValorNoExisteException | ListaVaciaException| ValorYaExisteException ex) {
-                        ex.printStackTrace();
+                            try {
+                                Thread.sleep(2000);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        } else break;
                     }
                 }
+                System.out.println(" ");
+                System.out.println("Selection:");
+                menu.selection();
 
+            } catch (InputMismatchException | ValorNoExisteException | ListaVaciaException| ValorYaExisteException e) {
+                System.out.println("Ingrese una opcion valida");
+                try {
+                    new Menu();
+                    menu.selection();
+                } catch (ValorNoExisteException | ListaVaciaException| ValorYaExisteException ex) {
+                    ex.printStackTrace();
+                }
             }
+
         });
         thread.start();
         thread2.start();

@@ -33,14 +33,6 @@ public class OlympicGame {
         return cantidadDeAtletasFemeninos;
     }
 
-    public int getCantidadDeAtletasMasculinos() {
-        return cantidadDeAtletasMasculinos;
-    }
-
-    public int getCantidadDeAtletasOtros() {
-        return cantidadDeAtletasOtros;
-    }
-
     public void setCantidadDeAtletasFemeninos(int cantidadDeAtletasFemeninos) {
         this.cantidadDeAtletasFemeninos = cantidadDeAtletasFemeninos;
     }

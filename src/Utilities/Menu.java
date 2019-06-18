@@ -32,7 +32,6 @@ public class Menu {
 
     public void selection() throws ValorNoExisteException, ListaVaciaException, ValorYaExisteException {
         Scanner in = new Scanner(System.in);
-
         switch (in.nextInt()) {
             case 1:
                 Questions.Question1();

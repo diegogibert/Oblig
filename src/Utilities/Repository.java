@@ -109,6 +109,7 @@ public class Repository {
     }
 
     public static void preg3() throws ValorNoExisteException {
+
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
 
             Athlete temp = LoadData.atletas.get(i);
@@ -124,10 +125,11 @@ public class Repository {
                     og.setCantidadDeAtletasFemeninos(og.getCantidadDeAtletasFemeninos() + 1);
                     OlympicGames.add(new HeapNode<>(og.getCantidadDeAtletasFemeninos(), og));
                 }
-            }
 
+            }
         }
-        OlympicGames0 = null;
+
+
     }
 
     public static void preg4F() throws ValorNoExisteException, ListaVaciaException {
@@ -135,7 +137,6 @@ public class Repository {
 
             Athlete temp = LoadData.atletas.get(i);
             SexType sex = temp.getSex();
-            ArrayList<AthleteOlympicParticipation> athleteOP = temp.getAtleteOP();
 
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
                 Event event = temp.getAtleteOP().get(j).getEvent();
@@ -150,7 +151,7 @@ public class Repository {
 
             }
         }
-        Competitions0F = null;
+
     }
 
     public static void preg4M() throws ValorNoExisteException, ListaVaciaException {
@@ -171,7 +172,7 @@ public class Repository {
                 }
             }
         }
-        Competitions0M = null;
+
     }
 
     public static void preg5() throws ValorNoExisteException, ListaVaciaException, ValorYaExisteException {
@@ -192,7 +193,7 @@ public class Repository {
                     team.setCompetidoresPorAno(year, cant + 1);
                 }
 
-                if (medal.equals(MedalType.GOLD) || medal.equals(MedalType.SILVER) || medal.equals(MedalType.BRONZE) ) {
+                if (medal.equals(MedalType.GOLD) || medal.equals(MedalType.SILVER) || medal.equals(MedalType.BRONZE)) {
                     try {
                         team.setMedallasPorAno(year, 1);
                     } catch (ValorYaExisteException e) {

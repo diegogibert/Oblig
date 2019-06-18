@@ -39,6 +39,10 @@ public class Athlete {
         return atleteOP;
     }
 
+    public void setAtleteOP(ArrayList<AthleteOlympicParticipation> atleteOP) {
+        this.atleteOP = atleteOP;
+    }
+
     public int getId() {
         return id;
     }

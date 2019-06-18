@@ -10,6 +10,36 @@ import uy.edu.um.clases.*;
 import java.util.Scanner;
 
 class Questions {
+    static boolean finish3 = false;
+    static boolean finish4F = false;
+    static boolean finish4M = false;
+    static boolean finish5 = false;
+    static OlympicGame edicion1 = null;
+    static OlympicGame edicion2 = null;
+    static OlympicGame edicion3 = null;
+    static OlympicGame edicion4 = null;
+    static OlympicGame edicion5 = null;
+    static OlympicGame edicion6 = null;
+    static OlympicGame edicion7 = null;
+    static OlympicGame edicion8 = null;
+    static OlympicGame edicion9 = null;
+    static OlympicGame edicion10 = null;
+    static Event e1 = null;
+    static Event e2 = null;
+    static Event e3 = null;
+    static Event e4 = null;
+    static Event e5 = null;
+    static Event ev1 = null;
+    static Event ev2 = null;
+    static Event ev3 = null;
+    static Event ev4 = null;
+    static Event ev5 = null;
+    static Team team1 = null;
+    static Team team2 = null;
+    static Team team3 = null;
+    static Team team4 = null;
+    static Team team5 = null;
+
     static void Question1() throws ValorNoExisteException, ListaVaciaException {
         MedalType m = MedalType.NA;
         String t = "N";
@@ -93,70 +123,72 @@ class Questions {
 
     static void Question3() throws ListaVaciaException, ValorNoExisteException {
 
+
         System.out.println("--------------------Pregunta 3-------------------");
         System.out.println(" ");
 
-        Repository.preg3();
+        if (!finish3) {
+            Repository.preg3();
+            edicion1 = Repository.OlympicGames.getAndDelete();
+            edicion2 = Repository.OlympicGames.getAndDelete();
+            while (edicion1.equals(edicion2)) edicion2 = Repository.OlympicGames.getAndDelete();
+            edicion3 = Repository.OlympicGames.getAndDelete();
+            while (edicion3.equals(edicion2) || edicion3.equals(edicion1))
+                edicion3 = Repository.OlympicGames.getAndDelete();
+            edicion4 = Repository.OlympicGames.getAndDelete();
+            while (edicion4.equals(edicion3) || edicion4.equals(edicion2) || edicion4.equals(edicion1))
+                edicion4 = Repository.OlympicGames.getAndDelete();
+            edicion5 = Repository.OlympicGames.getAndDelete();
+            while (edicion5.equals(edicion4) || edicion5.equals(edicion3) || edicion5.equals(edicion2) || edicion5.equals(edicion1))
+                edicion5 = Repository.OlympicGames.getAndDelete();
+            edicion6 = Repository.OlympicGames.getAndDelete();
+            while (edicion6.equals(edicion5) || edicion6.equals(edicion4) || edicion6.equals(edicion3) || edicion6.equals(edicion2) || edicion6.equals(edicion1))
+                edicion6 = Repository.OlympicGames.getAndDelete();
+            edicion7 = Repository.OlympicGames.getAndDelete();
+            while (edicion7.equals(edicion6) || edicion7.equals(edicion5) || edicion7.equals(edicion4) || edicion7.equals(edicion3) || edicion7.equals(edicion2) || edicion7.equals(edicion1))
+                edicion7 = Repository.OlympicGames.getAndDelete();
+            edicion8 = Repository.OlympicGames.getAndDelete();
+            while (edicion8.equals(edicion7) || edicion8.equals(edicion6) || edicion8.equals(edicion5) || edicion8.equals(edicion4) || edicion8.equals(edicion3) || edicion8.equals(edicion2) || edicion8.equals(edicion1))
+                edicion8 = Repository.OlympicGames.getAndDelete();
+            edicion9 = Repository.OlympicGames.getAndDelete();
+            while (edicion9.equals(edicion8) || edicion9.equals(edicion7) || edicion9.equals(edicion6) || edicion9.equals(edicion5) || edicion9.equals(edicion4) || edicion9.equals(edicion3) || edicion9.equals(edicion2) || edicion9.equals(edicion1))
+                edicion9 = Repository.OlympicGames.getAndDelete();
+            edicion10 = Repository.OlympicGames.getAndDelete();
+            while (edicion10.equals(edicion9) || edicion10.equals(edicion8) || edicion10.equals(edicion7) || edicion10.equals(edicion6) || edicion10.equals(edicion5) || edicion10.equals(edicion4) || edicion10.equals(edicion3) || edicion10.equals(edicion2) || edicion10.equals(edicion1))
+                edicion10 = Repository.OlympicGames.getAndDelete();
+            finish3 = true;
+        }
 
-        OlympicGame temp1 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp2 = Repository.OlympicGames.getAndDelete();
-        while (temp1.equals(temp2)) temp2 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp3 = Repository.OlympicGames.getAndDelete();
-        while (temp3.equals(temp2) || temp3.equals(temp1))
-            temp3 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp4 = Repository.OlympicGames.getAndDelete();
-        while (temp4.equals(temp3) || temp4.equals(temp2) || temp4.equals(temp1))
-            temp4 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp5 = Repository.OlympicGames.getAndDelete();
-        while (temp5.equals(temp4) || temp5.equals(temp3) || temp5.equals(temp2) || temp5.equals(temp1))
-            temp5 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp6 = Repository.OlympicGames.getAndDelete();
-        while (temp6.equals(temp5) || temp6.equals(temp4) || temp6.equals(temp3) || temp6.equals(temp2) || temp6.equals(temp1))
-            temp6 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp7 = Repository.OlympicGames.getAndDelete();
-        while (temp7.equals(temp6) || temp7.equals(temp5) || temp7.equals(temp4) || temp7.equals(temp3) || temp7.equals(temp2) || temp7.equals(temp1))
-            temp7 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp8 = Repository.OlympicGames.getAndDelete();
-        while (temp8.equals(temp7) || temp8.equals(temp6) || temp8.equals(temp5) || temp8.equals(temp4) || temp8.equals(temp3) || temp8.equals(temp2) || temp8.equals(temp1))
-            temp8 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp9 = Repository.OlympicGames.getAndDelete();
-        while (temp9.equals(temp8) || temp9.equals(temp7) || temp9.equals(temp6) || temp9.equals(temp5) || temp9.equals(temp4) || temp9.equals(temp3) || temp9.equals(temp2) || temp9.equals(temp1))
-            temp9 = Repository.OlympicGames.getAndDelete();
-        OlympicGame temp10 = Repository.OlympicGames.getAndDelete();
-        while (temp10.equals(temp9) || temp10.equals(temp8) || temp10.equals(temp7) || temp10.equals(temp6) || temp10.equals(temp5) || temp10.equals(temp4) || temp10.equals(temp3) || temp10.equals(temp2) || temp10.equals(temp1))
-            temp10 = Repository.OlympicGames.getAndDelete();
 
+        System.out.println("1 Nombre: " + edicion1.getName() + " Edicion: " + edicion1.getSeason() + " Ano: "
+                + edicion1.getYear() + " Cantidad de atletas Femeninos: " + edicion1.getCantidadDeAtletasFemeninos());
 
-        System.out.println("1 Nombre: " + temp1.getName() + " Edicion: " + temp1.getSeason() + " Ano: "
-                + temp1.getYear() + " Cantidad de atletas Femeninos: " + temp1.getCantidadDeAtletasFemeninos());
+        System.out.println("2 Nombre: " + edicion2.getName() + " Edicion: " + edicion2.getSeason() + " Ano: "
+                + edicion2.getYear() + " Cantidad de atletas Femeninos: " + edicion2.getCantidadDeAtletasFemeninos());
 
-        System.out.println("2 Nombre: " + temp2.getName() + " Edicion: " + temp2.getSeason() + " Ano: "
-                + temp2.getYear() + " Cantidad de atletas Femeninos: " + temp2.getCantidadDeAtletasFemeninos());
+        System.out.println("3 Nombre: " + edicion3.getName() + " Edicion: " + edicion3.getSeason() + " Ano: "
+                + edicion3.getYear() + " Cantidad de atletas Femeninos: " + edicion3.getCantidadDeAtletasFemeninos());
 
-        System.out.println("3 Nombre: " + temp3.getName() + " Edicion: " + temp3.getSeason() + " Ano: "
-                + temp3.getYear() + " Cantidad de atletas Femeninos: " + temp3.getCantidadDeAtletasFemeninos());
+        System.out.println("4 Nombre: " + edicion4.getName() + " Edicion: " + edicion4.getSeason() + " Ano: "
+                + edicion4.getYear() + " Cantidad de atletas Femeninos: " + edicion4.getCantidadDeAtletasFemeninos());
 
-        System.out.println("4 Nombre: " + temp4.getName() + " Edicion: " + temp4.getSeason() + " Ano: "
-                + temp4.getYear() + " Cantidad de atletas Femeninos: " + temp4.getCantidadDeAtletasFemeninos());
+        System.out.println("5 Nombre: " + edicion5.getName() + " Edicion: " + edicion5.getSeason() + " Ano: "
+                + edicion5.getYear() + " Cantidad de atletas Femeninos: " + edicion5.getCantidadDeAtletasFemeninos());
 
-        System.out.println("5 Nombre: " + temp5.getName() + " Edicion: " + temp5.getSeason() + " Ano: "
-                + temp5.getYear() + " Cantidad de atletas Femeninos: " + temp5.getCantidadDeAtletasFemeninos());
+        System.out.println("6 Nombre: " + edicion6.getName() + " Edicion: " + edicion6.getSeason() + " Ano: "
+                + edicion6.getYear() + " Cantidad de atletas Femeninos: " + edicion6.getCantidadDeAtletasFemeninos());
 
-        System.out.println("6 Nombre: " + temp6.getName() + " Edicion: " + temp6.getSeason() + " Ano: "
-                + temp6.getYear() + " Cantidad de atletas Femeninos: " + temp6.getCantidadDeAtletasFemeninos());
+        System.out.println("7 Nombre: " + edicion7.getName() + " Edicion: " + edicion7.getSeason() + " Ano: "
+                + edicion7.getYear() + " Cantidad de atletas Femeninos: " + edicion7.getCantidadDeAtletasFemeninos());
 
-        System.out.println("7 Nombre: " + temp7.getName() + " Edicion: " + temp7.getSeason() + " Ano: "
-                + temp7.getYear() + " Cantidad de atletas Femeninos: " + temp7.getCantidadDeAtletasFemeninos());
+        System.out.println("8 Nombre: " + edicion8.getName() + " Edicion: " + edicion8.getSeason() + " Ano: "
+                + edicion8.getYear() + " Cantidad de atletas Femeninos: " + edicion8.getCantidadDeAtletasFemeninos());
 
-        System.out.println("8 Nombre: " + temp8.getName() + " Edicion: " + temp8.getSeason() + " Ano: "
-                + temp8.getYear() + " Cantidad de atletas Femeninos: " + temp8.getCantidadDeAtletasFemeninos());
+        System.out.println("9 Nombre: " + edicion9.getName() + " Edicion: " + edicion9.getSeason() + " Ano: "
+                + edicion9.getYear() + " Cantidad de atletas Femeninos: " + edicion9.getCantidadDeAtletasFemeninos());
 
-        System.out.println("9 Nombre: " + temp9.getName() + " Edicion: " + temp9.getSeason() + " Ano: "
-                + temp9.getYear() + " Cantidad de atletas Femeninos: " + temp9.getCantidadDeAtletasFemeninos());
-
-        System.out.println("10 Nombre: " + temp10.getName() + " Edicion: " + temp10.getSeason() + " Ano: "
-                + temp10.getYear() + " Cantidad de atletas Femeninos: " + temp10.getCantidadDeAtletasFemeninos());
-
+        System.out.println("10 Nombre: " + edicion10.getName() + " Edicion: " + edicion10.getSeason() + " Ano: "
+                + edicion10.getYear() + " Cantidad de atletas Femeninos: " + edicion10.getCantidadDeAtletasFemeninos());
 
     }
 
@@ -184,45 +216,52 @@ class Questions {
             Question4();
         }
 
+        if (s.equals(SexType.F)) {
+            if (!finish4F) {
+                Repository.preg4F();
+                e1 = Repository.CompetitionsF.getAndDelete();
+                e2 = Repository.CompetitionsF.getAndDelete();
+                while (e1.equals(e2)) e2 = Repository.CompetitionsF.getAndDelete();
+                e3 = Repository.CompetitionsF.getAndDelete();
+                while (e3.equals(e2) || e3.equals(e1)) e3 = Repository.CompetitionsF.getAndDelete();
+                e4 = Repository.CompetitionsF.getAndDelete();
+                while (e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4 = Repository.CompetitionsF.getAndDelete();
+                e5 = Repository.CompetitionsF.getAndDelete();
+                while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
+                    e5 = Repository.CompetitionsF.getAndDelete();
+                finish4F = true;
+            }
+        }
+        if (s.equals(SexType.M)) {
+            if (!finish4M) {
+                Repository.preg4M();
+                ev1 = Repository.CompetitionsM.getAndDelete();
+                ev2 = Repository.CompetitionsM.getAndDelete();
+                while (ev1.equals(ev2)) ev2 = Repository.CompetitionsM.getAndDelete();
+                ev3 = Repository.CompetitionsM.getAndDelete();
+                while (ev3.equals(ev2) || ev3.equals(ev1)) ev3 = Repository.CompetitionsM.getAndDelete();
+                ev4 = Repository.CompetitionsM.getAndDelete();
+                while (ev4.equals(ev3) || ev4.equals(ev2) || ev4.equals(ev1))
+                    ev4 = Repository.CompetitionsM.getAndDelete();
+                ev5 = Repository.CompetitionsM.getAndDelete();
+                while (ev5.equals(ev4) || ev5.equals(ev3) || ev5.equals(ev2) || ev5.equals(ev1))
+                    ev5 = Repository.CompetitionsM.getAndDelete();
+                finish4M = true;
+            }
+        }
 
         if (s.equals(SexType.F)) {
-            Repository.preg4F();
-            Event e1 = Repository.CompetitionsF.getAndDelete();
-            Event e2 = Repository.CompetitionsF.getAndDelete();
-            while (e1.equals(e2)) e2 = Repository.CompetitionsF.getAndDelete();
-            Event e3 = Repository.CompetitionsF.getAndDelete();
-            while (e3.equals(e2) || e3.equals(e1)) e3 = Repository.CompetitionsF.getAndDelete();
-            Event e4 = Repository.CompetitionsF.getAndDelete();
-            while (e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4 = Repository.CompetitionsF.getAndDelete();
-            Event e5 = Repository.CompetitionsF.getAndDelete();
-            while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
-                e5 = Repository.CompetitionsF.getAndDelete();
-
             System.out.println("Nombre: " + e1.getName() + " Sexo: Femenino " + " Cantidad: " + e1.getCantidadMujeres());
             System.out.println("Nombre: " + e2.getName() + " Sexo: Femenino " + " Cantidad: " + e2.getCantidadMujeres());
             System.out.println("Nombre: " + e3.getName() + " Sexo: Femenino " + " Cantidad: " + e3.getCantidadMujeres());
             System.out.println("Nombre: " + e4.getName() + " Sexo: Femenino " + " Cantidad: " + e4.getCantidadMujeres());
             System.out.println("Nombre: " + e5.getName() + " Sexo: Femenino " + " Cantidad: " + e5.getCantidadMujeres());
-        }
-
-        if (s.equals(SexType.M)) {
-            Repository.preg4M();
-            Event e1 = Repository.CompetitionsM.getAndDelete();
-            Event e2 = Repository.CompetitionsM.getAndDelete();
-            while (e1.equals(e2)) e2 = Repository.CompetitionsM.getAndDelete();
-            Event e3 = Repository.CompetitionsM.getAndDelete();
-            while (e3.equals(e2) || e3.equals(e1)) e3 = Repository.CompetitionsM.getAndDelete();
-            Event e4 = Repository.CompetitionsM.getAndDelete();
-            while (e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4 = Repository.CompetitionsM.getAndDelete();
-            Event e5 = Repository.CompetitionsM.getAndDelete();
-            while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
-                e5 = Repository.CompetitionsM.getAndDelete();
-
-            System.out.println("Nombre: " + e1.getName() + " Sexo: Masculino " + " Cantidad: " + e1.getCantidadHombres());
-            System.out.println("Nombre: " + e2.getName() + " Sexo: Masculino " + " Cantidad: " + e2.getCantidadHombres());
-            System.out.println("Nombre: " + e3.getName() + " Sexo: Masculino " + " Cantidad: " + e3.getCantidadHombres());
-            System.out.println("Nombre: " + e4.getName() + " Sexo: Masculino " + " Cantidad: " + e4.getCantidadHombres());
-            System.out.println("Nombre: " + e5.getName() + " Sexo: Masculino " + " Cantidad: " + e5.getCantidadHombres());
+        } else if (s.equals(SexType.M)) {
+            System.out.println("Nombre: " + ev1.getName() + " Sexo: Masculino " + " Cantidad: " + ev1.getCantidadHombres());
+            System.out.println("Nombre: " + ev2.getName() + " Sexo: Masculino " + " Cantidad: " + ev2.getCantidadHombres());
+            System.out.println("Nombre: " + ev3.getName() + " Sexo: Masculino " + " Cantidad: " + ev3.getCantidadHombres());
+            System.out.println("Nombre: " + ev4.getName() + " Sexo: Masculino " + " Cantidad: " + ev4.getCantidadHombres());
+            System.out.println("Nombre: " + ev5.getName() + " Sexo: Masculino " + " Cantidad: " + ev5.getCantidadHombres());
         }
 
 
@@ -266,29 +305,29 @@ class Questions {
                     finish = true;
                 }
             }
-            relacion.add(new HeapNode(cantidadCompetidores/ cantidadMedallas, (Team) Repository.teams.get(i)));
+            relacion.add(new HeapNode(cantidadCompetidores / cantidadMedallas, (Team) Repository.teams.get(i)));
         }
 
-        try {
-
-            Team temp1 = (Team) relacion.getAndDelete();
-            Team temp2 = (Team) relacion.getAndDelete();
-            while (temp1.equals(temp2)) temp2 =(Team) relacion.getAndDelete();
-            Team temp3 = (Team) relacion.getAndDelete();
-            while (temp3.equals(temp2)|| temp3.equals(temp1)) temp3 =(Team) relacion.getAndDelete();
-            Team temp4 = (Team) relacion.getAndDelete();
-            while (temp4.equals(temp3)|| temp4.equals(temp2)|| temp4.equals(temp1)) temp4 =(Team) relacion.getAndDelete();
-            Team temp5 = (Team) relacion.getAndDelete();
-             while (temp5.equals(temp4)|| temp5.equals(temp3)|| temp5.equals(temp2)|| temp5.equals(temp1)) temp5 =(Team) relacion.getAndDelete();
-            System.out.println(temp1.getName());
-            System.out.println(temp2.getName());
-            System.out.println(temp3.getName());
-            System.out.println(temp4.getName());
-            System.out.println(temp5.getName());
-
-        } catch (ListaVaciaException e) {
-            e.printStackTrace();
+        if (!finish5) {
+            team1 = (Team) relacion.getAndDelete();
+            team2 = (Team) relacion.getAndDelete();
+            while (team1.equals(team2)) team2 = (Team) relacion.getAndDelete();
+            team3 = (Team) relacion.getAndDelete();
+            while (team3.equals(team2) || team3.equals(team1)) team3 = (Team) relacion.getAndDelete();
+            team4 = (Team) relacion.getAndDelete();
+            while (team4.equals(team3) || team4.equals(team2) || team4.equals(team1))
+                team4 = (Team) relacion.getAndDelete();
+            team5 = (Team) relacion.getAndDelete();
+            while (team5.equals(team4) || team5.equals(team3) || team5.equals(team2) || team5.equals(team1))
+                team5 = (Team) relacion.getAndDelete();
+            finish5=true;
         }
+
+        System.out.println(team1.getName());
+        System.out.println(team2.getName());
+        System.out.println(team3.getName());
+        System.out.println(team4.getName());
+        System.out.println(team5.getName());
 
 
     }
