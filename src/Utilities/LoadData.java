@@ -1,12 +1,7 @@
 package Utilities;
-
-import BinarySearchTree.BinarySearchTree;
-import BinarySearchTree.ValorYaExisteException;
 import Hash.HashCerrado;
-import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 import uy.edu.um.clases.*;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

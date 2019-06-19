@@ -6,11 +6,11 @@ public class RelacionEquipoCantidad {
     private int cantidadMedallas;
     private int cantidadCompetidores;
 
-    public RelacionEquipoCantidad(Team team, int cantidadMedallas, int cantidadCompetidores) {
+    public RelacionEquipoCantidad(Team team) {
         this.team = team;
-        this.cantidadMedallas = cantidadMedallas;
-        this.cantidadCompetidores = cantidadCompetidores;
+
     }
+
 
     public Team getTeam() {
         return team;

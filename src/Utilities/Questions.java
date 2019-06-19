@@ -117,8 +117,8 @@ class Questions {
     }
 
     public static void Question2() throws ListaVaciaException, ValorNoExisteException, ValorYaExisteException {
-            if(!finish5) Repository.preg2O();
-            finish5=true;
+            if(!finish2) Repository.preg2O();
+            finish2=true;
 
         MedalType m = MedalType.NA;
         String t = "N";
