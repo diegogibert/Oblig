@@ -1,5 +1,7 @@
 package uy.edu.um.clases;
 
+import java.util.Objects;
+
 public class NationalOlympicCommittee {
 
     private String noc;
@@ -45,5 +47,13 @@ public class NationalOlympicCommittee {
         this.medallaBronce = medallaBronce;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        NationalOlympicCommittee that = (NationalOlympicCommittee) o;
+        return Objects.equals(noc, that.noc) &&
+                Objects.equals(region, that.region);
+    }
 
 }

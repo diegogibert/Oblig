@@ -7,9 +7,11 @@ import heap.HeapMax;
 import heap.HeapNode;
 import uy.edu.um.clases.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 class Questions {
+    static boolean finish2=false;
     static boolean finish3 = false;
     static boolean finish4F = false;
     static boolean finish4M = false;
@@ -39,6 +41,12 @@ class Questions {
     static Team team3 = null;
     static Team team4 = null;
     static Team team5 = null;
+    static ArrayList<NationalOlympicCommittee> temp1= new ArrayList<>();
+    static ArrayList<NationalOlympicCommittee> temp2= new ArrayList<>();
+    static ArrayList<NationalOlympicCommittee> temp3= new ArrayList<>();
+    static ArrayList<NationalOlympicCommittee> temp4= new ArrayList<>();
+
+
 
     static void Question1() throws ValorNoExisteException, ListaVaciaException {
         MedalType m = MedalType.NA;
@@ -89,7 +97,7 @@ class Questions {
             Repository.preg1B();
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasBronce.getAndDelete();
-                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Bronces: " + temp.getBroonces()+ " Año max: " + temp.getLastMedalBronze());
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Bronces: " + temp.getBroonces() + " Año max: " + temp.getLastMedalBronze());
             }
         }
         if (m.equals(MedalType.SILVER)) {
@@ -108,18 +116,80 @@ class Questions {
         }
     }
 
-    public static void Question2() throws ListaVaciaException, ValorNoExisteException {
-        Scanner di = new Scanner(System.in);
-        System.out.println("Oro(O), Plata(P), Bronce(B) o Todas(T)?");
-        String i = di.next();
-        if (i.equals("O")) {
-            Repository.preg2();
+    public static void Question2() throws ListaVaciaException, ValorNoExisteException, ValorYaExisteException {
+            if(!finish5) Repository.preg2O();
+            finish5=true;
 
-        } else {
-            System.out.println("Valor invalido");
-            Question1();
+        MedalType m = MedalType.NA;
+        String t = "N";
+
+        Scanner di = new Scanner(System.in);
+
+        System.out.println("--------------------Pregunta 2-------------------");
+        System.out.println(" ");
+        System.out.println("-------------------Seleccione una opcion------------------");
+        System.out.println(" ");
+        System.out.println("Oro(O)");
+        System.out.println(" ");
+        System.out.println("Plata(P)");
+        System.out.println(" ");
+        System.out.println("Bronce(B)");
+        System.out.println(" ");
+        System.out.println("Todas(T)");
+        System.out.println(" ");
+        System.out.println("Selection:");
+        String i = di.next();
+        switch (i) {
+            case "O":
+                m = MedalType.GOLD;
+                break;
+            case "P":
+                m = MedalType.SILVER;
+                break;
+            case "B":
+                m = MedalType.BRONZE;
+                break;
+            case "T":
+                t = "T";
+                break;
+            default:
+                System.out.println(" ");
+                System.out.println("Valor invalido");
+                Question1();
+                break;
+        }
+        if (m.equals(MedalType.GOLD)) {
+            for (int j = 0; j < 10; j++) {
+                temp1.add(Repository.medallasOroPreg2.getAndDelete());
+                NationalOlympicCommittee temp= temp1.get(j);
+                System.out.println("Region: " + temp.getRegion() + " Cantidad Oros: " + temp.getMedallaOro());
+
+            }
+        }
+        if (m.equals(MedalType.BRONZE)) {
+            for (int j = 0; j < 10; j++) {
+                temp2.add(Repository.medallasBroncePreg2.getAndDelete());
+                System.out.println("Region: " + temp2.get(j).getRegion() + " Cantidad Bronces: " + temp2.get(j).getMedallaBronce());
+
+            }
+        }
+        if (m.equals(MedalType.SILVER)) {
+            for (int j = 0; j < 10; j++) {
+                temp3.add(Repository.medallasPlataPreg2.getAndDelete());
+                System.out.println("Region: " + temp3.get(j).getRegion() + " Cantidad Platas: " + temp3.get(j).getMedallaPlata());
+
+            }
+        }
+        if (t == "T") {
+            for (int j = 0; j < 10; j++) {
+                temp4.add(Repository.medallasTotalesPreg2.getAndDelete());
+                int total = temp4.get(j).getMedallaPlata() + temp4.get(j).getMedallaBronce() + temp4.get(j).getMedallaOro();
+                System.out.println("Region: " + temp4.get(j).getRegion() + " Cantidad Total " + total);
+            }
         }
     }
+
+
 
     static void Question3() throws ListaVaciaException, ValorNoExisteException {
 
@@ -268,7 +338,6 @@ class Questions {
     }
 
     static void Question5() throws ValorNoExisteException, ValorYaExisteException, ListaVaciaException {
-        Repository.preg5();
 
         int cantidadMedallas;
         int cantidadCompetidores;
@@ -305,10 +374,12 @@ class Questions {
                     finish = true;
                 }
             }
-            relacion.add(new HeapNode(cantidadCompetidores / cantidadMedallas, (Team) Repository.teams.get(i)));
+           System.out.println(cantidadCompetidores + " medallas "+ cantidadMedallas+ " equipo "+ Repository.teams.get(i).getName());
+            relacion.add(new HeapNode( cantidadCompetidores / cantidadMedallas, (Team) Repository.teams.get(i)));
         }
 
         if (!finish5) {
+          Repository.preg5();
             team1 = (Team) relacion.getAndDelete();
             team2 = (Team) relacion.getAndDelete();
             while (team1.equals(team2)) team2 = (Team) relacion.getAndDelete();

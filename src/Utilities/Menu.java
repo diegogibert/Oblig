@@ -39,7 +39,7 @@ public class Menu {
                 selection();
                 break;
             case 2:
-                System.out.println("result 2");
+                Questions.Question2();
                 displayMenu();
                 selection();
                 break;

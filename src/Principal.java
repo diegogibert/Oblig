@@ -53,7 +53,7 @@ public class Principal {
                 try {
                     new Menu();
                     menu.selection();
-                } catch (ValorNoExisteException | ListaVaciaException| ValorYaExisteException ex) {
+                } catch (ValorNoExisteException | InputMismatchException| ListaVaciaException| ValorYaExisteException ex) {
                     ex.printStackTrace();
                 }
             }
