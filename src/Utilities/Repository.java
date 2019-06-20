@@ -35,12 +35,16 @@ public class Repository {
     public static void preg1O() throws ValorNoExisteException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
-
             temp.setOros(0);
             totales = 0;
+            int counterO=0;
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
                 MedalType medal = temp.getAtleteOP().get(j).getMedal();
                 if (medal.equals(MedalType.GOLD)) {
+                    counterO++;
+                    if (counterO==1) {
+                        temp.setFirstMedalGold(temp.getAtleteOP().get(j).getOG().getYear());
+                    }
                     int oros = temp.getOros() + 1;
                     temp.setOros(oros);
                     temp.setLastMedalGold(temp.getAtleteOP().get(j).getOG().getYear());
@@ -57,9 +61,14 @@ public class Repository {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
             temp.setBroonces(0);
+            int counterB=0;
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
                 MedalType medal = temp.getAtleteOP().get(j).getMedal();
                 if (medal.equals(MedalType.BRONZE)) {
+                    counterB++;
+                    if (counterB==1) {
+                        temp.setFirstMedalBronze(temp.getAtleteOP().get(j).getOG().getYear());
+                    }
                     int bronces = temp.getBroonces() + 1;
                     temp.setBroonces(bronces);
                     temp.setLastMedalBronze(temp.getAtleteOP().get(j).getOG().getYear());
@@ -76,9 +85,14 @@ public class Repository {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
             temp.setPlatas(0);
+            int counterP=0;
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
                 MedalType medal = temp.getAtleteOP().get(j).getMedal();
                 if (medal.equals(MedalType.SILVER)) {
+                    counterP++;
+                    if (counterP==1) {
+                        temp.setFirstMedalSilver(temp.getAtleteOP().get(j).getOG().getYear());
+                    }
                     int platas = temp.getPlatas() + 1;
                     temp.setPlatas(platas);
                     temp.setLastMedalSilver(temp.getAtleteOP().get(j).getOG().getYear());
@@ -95,9 +109,14 @@ public class Repository {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
             temp.setTotales(0);
+            int counterT=0;
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
                 MedalType medal = temp.getAtleteOP().get(j).getMedal();
                 if (medal.equals(MedalType.SILVER) || medal.equals(MedalType.BRONZE) || medal.equals(MedalType.GOLD)) {
+                    counterT++;
+                    if (counterT==1) {
+                        temp.setFirstMedalTotal(temp.getAtleteOP().get(j).getOG().getYear());
+                    }
                     int total = temp.getTotales() + 1;
                     temp.setTotales(total);
                     temp.setLastMedalTotal(temp.getAtleteOP().get(j).getOG().getYear());
@@ -112,10 +131,16 @@ public class Repository {
 
     public static void preg2O() throws ValorNoExisteException {
         NationalOlympicCommittee noqui = null;
-
+        for (int i = 1; i <= LoadData.atletas.size(); i++){
+            Athlete temp = LoadData.atletas.get(i);
+            temp.setOros(0);
+            temp.setPlatas(0);
+            temp.setBroonces(0);
+        }
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);
             noqui = LoadData.NationalOlympicCommittees.get(temp.getNOC().getNoc());
+
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
                 MedalType medal = temp.getAtleteOP().get(j).getMedal();
                 if (medal.equals(MedalType.GOLD)) {
@@ -136,7 +161,7 @@ public class Repository {
             }
             noqui.setMedallaOro(noqui.getMedallaOro() + temp.getOros());
             noqui.setMedallaPlata(noqui.getMedallaPlata() + temp.getPlatas());
-            noqui.setMedallaBronce(noqui.getMedallaBronce() + temp.getPlatas());
+            noqui.setMedallaBronce(noqui.getMedallaBronce() + temp.getBroonces());
         }
         noqui.setMedallaOro(0);
         noqui.setMedallaBronce(0);
@@ -145,9 +170,6 @@ public class Repository {
         for (int i = 0; i < LoadData.nocs.size(); i++) {
             String temp = LoadData.nocs.get(i);
             NationalOlympicCommittee noc = LoadData.NationalOlympicCommittees.get(temp);
-//            System.out.println("oro "+ noc.getMedallaOro());
-//            System.out.println(" plata" + noc.getMedallaPlata());
-//            System.out.println(noc.getMedallaBronce());
             medallasOroPreg2.add(new HeapNode<>(noc.getMedallaOro(), noc));
             medallasPlataPreg2.add(new HeapNode<>(noc.getMedallaPlata(), noc));
             medallasBroncePreg2.add(new HeapNode<>(noc.getMedallaBronce(), noc));
