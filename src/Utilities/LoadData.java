@@ -64,6 +64,7 @@ public class LoadData {
 
                 Team team = new Team(vec[6].substring(1, vec[6].length() - 1));
 
+
                 SexType sex = SexType.NA;
                 if ((vec[2].substring(1, vec[2].length() - 1)).equals("F")) {
                     sex = SexType.F;

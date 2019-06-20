@@ -9,9 +9,8 @@ public class Team {
 
     private String name;
 
-    private static BinarySearchTree<Integer,Integer> competidoresPorAno= new BinarySearchTree();
-    private static BinarySearchTree<Integer,Integer> medallasPorAno= new BinarySearchTree();
-
+    private static BinarySearchTree competidoresPorAno= new BinarySearchTree();
+    private static BinarySearchTree medallasPorAno= new BinarySearchTree();
 
     public BinarySearchTree getCompetidoresPorAno() {
         return competidoresPorAno;
