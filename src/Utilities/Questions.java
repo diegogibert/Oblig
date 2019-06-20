@@ -4,7 +4,6 @@ import BinarySearchTree.ValorYaExisteException;
 import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 import heap.HeapMax;
-import heap.HeapNode;
 import uy.edu.um.clases.*;
 
 import java.util.ArrayList;
@@ -357,49 +356,50 @@ class Questions {
             System.out.println("Opcion Invalida, ingrese ano maximo (menor o igual a 2016)");
             anoMaximo = scanner.nextInt();
         }
+        Repository.preg5F(anoMinimo, anoMaximo);
 
 
-        for (int i = 0; i < Repository.teams.size(); i++) {
-            cantidadCompetidores = 0;
-            cantidadMedallas = 0;
-
-            int anoMinimoTemp = anoMinimo;
-
-            while (anoMinimoTemp <= anoMaximo && !finish) {
-                try {
-                    cantidadCompetidores = cantidadCompetidores + (Integer) Repository.teams.get(i).getCompetidoresPorAno().find(anoMinimoTemp);
-                    cantidadMedallas = cantidadMedallas + (Integer) Repository.teams.get(i).getMedallasPorAno().find(anoMinimoTemp);
-                    anoMinimoTemp = anoMinimoTemp + 1;
-                    System.out.println(cantidadCompetidores);
-                    System.out.println(cantidadMedallas);
-                } catch (ListaVaciaException | ValorNoExisteException e) {
-                    finish = true;
-                }
-            }
-            System.out.println(cantidadCompetidores/ cantidadMedallas);
-            relacion.add(new HeapNode(cantidadCompetidores/ cantidadMedallas, (Team) Repository.teams.get(i)));
-        }
-
-        try {
-            Repository.preg5();
-            Team temp1 = (Team) relacion.getAndDelete();
-            Team temp2 = (Team) relacion.getAndDelete();
-            while (temp1.equals(temp2)) temp2 =(Team) relacion.getAndDelete();
-            Team temp3 = (Team) relacion.getAndDelete();
-            while (temp3.equals(temp2)|| temp3.equals(temp1)) temp3 =(Team) relacion.getAndDelete();
-            Team temp4 = (Team) relacion.getAndDelete();
-            while (temp4.equals(temp3)|| temp4.equals(temp2)|| temp4.equals(temp1)) temp4 =(Team) relacion.getAndDelete();
-            Team temp5 = (Team) relacion.getAndDelete();
-            while (temp5.equals(temp4)|| temp5.equals(temp3)|| temp5.equals(temp2)|| temp5.equals(temp1)) temp5 =(Team) relacion.getAndDelete();
-            System.out.println(temp1.getName());
-            System.out.println(temp2.getName());
-            System.out.println(temp3.getName());
-            System.out.println(temp4.getName());
-            System.out.println(temp5.getName());
-
-        } catch (ListaVaciaException| ValorYaExisteException e) {
-            e.printStackTrace();
-        }
+//        for (int i = 0; i < Repository.teams.size(); i++) {
+//            cantidadCompetidores = 0;
+//            cantidadMedallas = 0;
+//
+//            int anoMinimoTemp = anoMinimo;
+//
+//            while (anoMinimoTemp <= anoMaximo && !finish) {
+//                try {
+//                    cantidadCompetidores = cantidadCompetidores + (Integer) Repository.teams.get(i).getCompetidoresPorAno().find(anoMinimoTemp);
+//                    cantidadMedallas = cantidadMedallas + (Integer) Repository.teams.get(i).getMedallasPorAno().find(anoMinimoTemp);
+//                    anoMinimoTemp = anoMinimoTemp + 1;
+//                    System.out.println(cantidadCompetidores);
+//                    System.out.println(cantidadMedallas);
+//                } catch (ListaVaciaException | ValorNoExisteException e) {
+//                    finish = true;
+//                }
+//            }
+//            System.out.println(cantidadCompetidores/ cantidadMedallas);
+//            relacion.add(new HeapNode(cantidadCompetidores/ cantidadMedallas, (Team) Repository.teams.get(i)));
+//        }
+//
+//        try {
+//            Repository.preg5();
+//            Team temp1 = (Team) relacion.getAndDelete();
+//            Team temp2 = (Team) relacion.getAndDelete();
+//            while (temp1.equals(temp2)) temp2 =(Team) relacion.getAndDelete();
+//            Team temp3 = (Team) relacion.getAndDelete();
+//            while (temp3.equals(temp2)|| temp3.equals(temp1)) temp3 =(Team) relacion.getAndDelete();
+//            Team temp4 = (Team) relacion.getAndDelete();
+//            while (temp4.equals(temp3)|| temp4.equals(temp2)|| temp4.equals(temp1)) temp4 =(Team) relacion.getAndDelete();
+//            Team temp5 = (Team) relacion.getAndDelete();
+//            while (temp5.equals(temp4)|| temp5.equals(temp3)|| temp5.equals(temp2)|| temp5.equals(temp1)) temp5 =(Team) relacion.getAndDelete();
+//            System.out.println(temp1.getName());
+//            System.out.println(temp2.getName());
+//            System.out.println(temp3.getName());
+//            System.out.println(temp4.getName());
+//            System.out.println(temp5.getName());
+//
+//        } catch (ListaVaciaException| ValorYaExisteException e) {
+//            e.printStackTrace();
+//        }
 
 
     }

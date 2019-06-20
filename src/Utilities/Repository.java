@@ -1,8 +1,8 @@
 package Utilities;
 
 
-import BinarySearchTree.BinarySearchTree;
 import BinarySearchTree.ValorYaExisteException;
+import Hash.HashCerrado;
 import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 import heap.HeapMax;
@@ -29,6 +29,8 @@ public class Repository {
     static HeapMax<Integer, NationalOlympicCommittee> medallasPlataPreg2 = new HeapMax<>(1000000);
     static HeapMax<Integer, NationalOlympicCommittee> medallasTotalesPreg2 = new HeapMax<>(1000000);
     static ArrayList<Team> teams = new ArrayList<>(2000);
+    static HashCerrado<Team, Nodo> preg5 = new HashCerrado<>(1000000);
+    static HeapMax<Nodo, Nodo> res = new HeapMax<>(10000000);
 
 
     public static void preg1O() throws ValorNoExisteException {
@@ -297,6 +299,46 @@ public class Repository {
 
         }
     }
+
+    public static void preg5F(int yearMin, int yearMax) throws ValorNoExisteException, ListaVaciaException {
+        for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            Athlete temp = LoadData.atletas.get(i);
+            for (int j = 0; j < temp.getAtleteOP().size(); j++) {
+                if(temp.getAtleteOP().get(j).getOG().getYear() >= yearMin &&  temp.getAtleteOP().get(j).getOG().getYear() <= yearMax){
+                    Team team = temp.getAtleteOP().get(j).getTeam();
+                    if(!preg5.belongs(team)){
+                        if(!temp.getAtleteOP().get(j).getMedal().equals(MedalType.NA)){
+                            preg5.insert(team, new Nodo(1,1,team.getName()));
+                        }else{
+                            preg5.insert(team, new Nodo(0,1,team.getName()));
+                        }
+                        temp.setAgregado(true);
+                    }else{
+                        if(!temp.getAtleteOP().get(j).getMedal().equals(MedalType.NA) && temp.isAgregado()==false){
+                            Nodo nodito = preg5.get(team);
+                            nodito.setMedallasPorEquipo(nodito.getMedallasPorEquipo() + 1);
+                            nodito.setParticipantesPorEquipo(nodito.getParticipantesPorEquipo() + 1);
+                            temp.setAgregado(true);
+                        }else if(!temp.getAtleteOP().get(j).getMedal().equals(MedalType.NA) && temp.isAgregado()==true){
+                            Nodo nodito = preg5.get(team);
+                            nodito.setMedallasPorEquipo(nodito.getMedallasPorEquipo() + 1);
+                        }else if(temp.getAtleteOP().get(j).getMedal().equals(MedalType.NA) && temp.isAgregado()==false){
+                            Nodo nodito = preg5.get(team);
+                            nodito.setParticipantesPorEquipo(nodito.getParticipantesPorEquipo() + 1);
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+        for (int i = 0; i < 5; i++) {
+            Nodo temp = res.getAndDelete();
+            System.out.println(temp.getMedallasPorEquipo()/temp.getParticipantesPorEquipo() +"  "+ temp.getNombreEquipo() );
+        }
+    }
+
 
 
 }

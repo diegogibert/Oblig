@@ -24,6 +24,7 @@ public class Athlete {
     private int firstMedalBronze = 0;
     private int lastMedalTotal = 0;
     private int firstMedalTotal = 0;
+    private boolean agregado = false;
 
     public Athlete(int id, String name, SexType sex, int age, float height, float weight) {
         this.id = id;
@@ -157,5 +158,13 @@ public class Athlete {
 
     public void setFirstMedalTotal(int firstMedalTotal) {
         this.firstMedalTotal = firstMedalTotal;
+    }
+
+    public boolean isAgregado() {
+        return agregado;
+    }
+
+    public void setAgregado(boolean agregado) {
+        this.agregado = agregado;
     }
 }
