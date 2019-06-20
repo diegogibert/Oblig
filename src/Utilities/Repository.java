@@ -29,7 +29,7 @@ public class Repository {
     static HeapMax<Integer, NationalOlympicCommittee> medallasBroncePreg2 = new HeapMax<>(1000000);
     static HeapMax<Integer, NationalOlympicCommittee> medallasPlataPreg2 = new HeapMax<>(1000000);
     static HeapMax<Integer, NationalOlympicCommittee> medallasTotalesPreg2 = new HeapMax<>(1000000);
-    static BinarySearchTree<Integer, RelacionEquipoCantidad> pregunta5= new BinarySearchTree<Integer, RelacionEquipoCantidad>();
+    static BinarySearchTree<Integer, ArrayList<RelacionEquipoCantidad>> pregunta5= new BinarySearchTree<Integer, ArrayList<RelacionEquipoCantidad>>();
 
 
     public static void preg1O() throws ValorNoExisteException {
@@ -191,7 +191,7 @@ public class Repository {
                 OlympicGame newOG = temp.getAtleteOP().get(j).getOG();
 
                 for (int h = 0; h < temp.getAtleteOP().size(); h++) {
-                    if (h != j && temp.getAtleteOP().get(h).getOG().getYear() == newOG.getYear()) {
+                    if (h != j && temp.getAtleteOP().get(h).getOG().equals(temp.getAtleteOP().get(j).getOG())) {
                         check = true;
                     }
                 }
@@ -222,7 +222,7 @@ public class Repository {
                 Event event = temp.getAtleteOP().get(j).getEvent();
 
                 for (int h = 0; h < temp.getAtleteOP().size(); h++) {
-                    if (h != j && temp.getAtleteOP().get(h).getOG().getYear() == temp.getAtleteOP().get(j).getOG().getYear()) {
+                    if (h != j && temp.getAtleteOP().get(h).getOG().equals(temp.getAtleteOP().get(j).getOG())) {
                         check = true;
                     }
                 }
@@ -255,7 +255,7 @@ public class Repository {
                 Event event = temp.getAtleteOP().get(j).getEvent();
 
                 for (int h = 0; h < temp.getAtleteOP().size(); h++) {
-                    if (h != j && temp.getAtleteOP().get(h).getOG().getYear() == temp.getAtleteOP().get(j).getOG().getYear()) {
+                    if (h != j && temp.getAtleteOP().get(h).getOG().equals(temp.getAtleteOP().get(j).getOG()) ) {
                         check = true;
                     }
                 }
@@ -280,12 +280,13 @@ public class Repository {
         Team team = null;
         MedalType medal = null;
         int year = 0;
-        boolean seguir=false;
-        boolean seguir2=false;
-        RelacionEquipoCantidad rel=null;
+        RelacionEquipoCantidad rel = null;
+        ArrayList<RelacionEquipoCantidad> relacion= new ArrayList<>();
 
 
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            cont1 = 0;
+            cont2 = 2;
             Athlete temp = LoadData.atletas.get(i);
 
             for (int j = 0; j < temp.getAtleteOP().size(); j++) {
@@ -294,50 +295,33 @@ public class Repository {
                 year = temp.getAtleteOP().get(j).getOG().getYear();
 
 
+                try {
                     rel= new RelacionEquipoCantidad(team);
                     rel.setCantidadCompetidores(1);
-                    try {
-                        pregunta5.insert(year, rel);
-                        cont1=1;
-                    }catch (ValorYaExisteException e){
-                        cont1=pregunta5.find(year).getCantidadCompetidores() +1;
-                        pregunta5.delete(year);
-                        rel=new RelacionEquipoCantidad(team);
-                        rel.setCantidadCompetidores(cont1);
-                        pregunta5.insert(year,rel);
-                    }
-
-                    if(!medal.equals(MedalType.NA)){
-                        try{
-                            cont2=rel.getCantidadMedallas() +1;
-                            pregunta5.find(year).setCantidadMedallas(cont2);
-                        }catch(ValorNoExisteException| ListaVaciaException e){
-
+                    if(!medal.equals(MedalType.NA)) rel.setCantidadMedallas(1);
+                    pregunta5.insert(year,relacion);
+                    pregunta5.find(year).add(rel);
+                }catch(ValorYaExisteException e) {
+                    rel = new RelacionEquipoCantidad(team);
+                    if (!pregunta5.find(year).contains(rel)) {
+                        rel.setCantidadCompetidores(rel.getCantidadCompetidores() + 1);
+                        if (!medal.equals(MedalType.NA)) rel.setCantidadMedallas(rel.getCantidadMedallas() + 1);
+                        pregunta5.find(year).add(rel);
+                    }else{
+                        int h=0;
+                        while(pregunta5.find(year).get(h).equals(team)) {
+                            pregunta5.find(year).get(h);
+                            h++;
                         }
+                        pregunta5.find(year).get(h).setCantidadCompetidores(pregunta5.find(year).get(h).getCantidadCompetidores()+1);
+                        if(!medal.equals(MedalType.NA))  pregunta5.find(year).get(h).setCantidadMedallas(pregunta5.find(year).get(h).getCantidadMedallas()+1);
                     }
 
-
-
+                }
+                if (!teams.contains(team)) teams.add(team);
 
             }
-
-            if (!teams.contains(team)) teams.add(team);
         }
-        while(!seguir && !seguir2){
-        try {
-            team.setCompetidoresPorAno(year, cont1);
-            seguir=true;
-        }catch(ValorYaExisteException e){
-            team.getCompetidoresPorAno().delete(year);
-        }
-        try{
-            team.setMedallasPorAno(year, cont2);
-            seguir2=true;
-        }catch(ValorYaExisteException e){
-            team.getMedallasPorAno().delete(year);
-        }
-        }
-
     }
 }
 

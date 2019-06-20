@@ -1,5 +1,7 @@
 package uy.edu.um.clases;
 
+import java.util.Objects;
+
 public class RelacionEquipoCantidad {
 
     private Team team;
@@ -35,4 +37,14 @@ public class RelacionEquipoCantidad {
     public void setCantidadCompetidores(int cantidadCompetidores) {
         this.cantidadCompetidores = cantidadCompetidores;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RelacionEquipoCantidad that = (RelacionEquipoCantidad) o;
+        return Objects.equals(team, that.team);
+    }
+
+
 }

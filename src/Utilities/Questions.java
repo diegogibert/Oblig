@@ -11,10 +11,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Questions {
-    static boolean finish2=false;
+    static boolean finish2 = false;
     static boolean finish3 = false;
     static boolean finish4F = false;
     static boolean finish4M = false;
+    static boolean finish52 = false;
     static boolean finish5 = false;
     static OlympicGame edicion1 = null;
     static OlympicGame edicion2 = null;
@@ -41,11 +42,10 @@ class Questions {
     static Team team3 = null;
     static Team team4 = null;
     static Team team5 = null;
-    static ArrayList<NationalOlympicCommittee> temp1= new ArrayList<>();
-    static ArrayList<NationalOlympicCommittee> temp2= new ArrayList<>();
-    static ArrayList<NationalOlympicCommittee> temp3= new ArrayList<>();
-    static ArrayList<NationalOlympicCommittee> temp4= new ArrayList<>();
-
+    static ArrayList<NationalOlympicCommittee> temp1 = new ArrayList<>();
+    static ArrayList<NationalOlympicCommittee> temp2 = new ArrayList<>();
+    static ArrayList<NationalOlympicCommittee> temp3 = new ArrayList<>();
+    static ArrayList<NationalOlympicCommittee> temp4 = new ArrayList<>();
 
 
     static void Question1() throws ValorNoExisteException, ListaVaciaException {
@@ -90,7 +90,7 @@ class Questions {
             Repository.preg1O();
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasOro.getAndDelete();
-                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Oros: " + temp.getOros()+ " Año min: " + temp.getFirstMedalGold() + " Año max: " + temp.getLastMedalGold());
+                System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Oros: " + temp.getOros() + " Año min: " + temp.getFirstMedalGold() + " Año max: " + temp.getLastMedalGold());
             }
         }
         if (m.equals(MedalType.BRONZE)) {
@@ -117,8 +117,8 @@ class Questions {
     }
 
     public static void Question2() throws ListaVaciaException, ValorNoExisteException, ValorYaExisteException {
-            if(!finish2) Repository.preg2O();
-            finish2=true;
+        if (!finish2) Repository.preg2O();
+        finish2 = true;
 
         MedalType m = MedalType.NA;
         String t = "N";
@@ -161,7 +161,7 @@ class Questions {
         if (m.equals(MedalType.GOLD)) {
             for (int j = 0; j < 10; j++) {
                 temp1.add(Repository.medallasOroPreg2.getAndDelete());
-                NationalOlympicCommittee temp= temp1.get(j);
+                NationalOlympicCommittee temp = temp1.get(j);
                 System.out.println("Region: " + temp.getRegion() + " Cantidad Oros: " + temp.getMedallaOro());
 
             }
@@ -188,7 +188,6 @@ class Questions {
             }
         }
     }
-
 
 
     static void Question3() throws ListaVaciaException, ValorNoExisteException {
@@ -338,6 +337,9 @@ class Questions {
     }
 
     static void Question5() throws ValorNoExisteException, ValorYaExisteException, ListaVaciaException {
+        do {
+            Repository.preg5();
+        } while (false);
 
         int cantidadMedallas;
         int cantidadCompetidores;
@@ -362,37 +364,41 @@ class Questions {
         for (int i = 0; i < Repository.teams.size(); i++) {
             cantidadCompetidores = 0;
             cantidadMedallas = 0;
-
             int anoMinimoTemp = anoMinimo;
+            int h = 0;
+            while (!Repository.teams.equals(Repository.pregunta5.find(anoMinimoTemp).get(h))) { h++; }
 
             while (anoMinimoTemp <= anoMaximo && !finish) {
                 try {
-                    cantidadCompetidores = cantidadCompetidores + (Integer) Repository.teams.get(i).getCompetidoresPorAno().find(anoMinimoTemp);
-                    cantidadMedallas = cantidadMedallas + (Integer) Repository.teams.get(i).getMedallasPorAno().find(anoMinimoTemp);
+                    cantidadCompetidores = cantidadCompetidores + (Integer) Repository.pregunta5.find(anoMinimoTemp).get(h).getCantidadCompetidores();
+                    cantidadMedallas = cantidadMedallas + (Integer) Repository.pregunta5.find(anoMinimoTemp).get(h).getCantidadMedallas();
                     anoMinimoTemp = anoMinimoTemp + 1;
                 } catch (ListaVaciaException | ValorNoExisteException e) {
                     finish = true;
                 }
             }
-           System.out.println(cantidadCompetidores + " medallas "+ cantidadMedallas+ " equipo "+ Repository.teams.get(i).getName());
-            relacion.add(new HeapNode( cantidadCompetidores / cantidadMedallas, (Team) Repository.teams.get(i)));
+            System.out.println(cantidadCompetidores + " medallas " + cantidadMedallas + " equipo " + Repository.teams.get(i).getName());
+            relacion.add(new HeapNode(cantidadCompetidores / cantidadMedallas, (Team) Repository.teams.get(i)));
         }
 
-        if (!finish5) {
-          Repository.preg5();
-            team1 = (Team) relacion.getAndDelete();
-            team2 = (Team) relacion.getAndDelete();
-            while (team1.equals(team2)) team2 = (Team) relacion.getAndDelete();
-            team3 = (Team) relacion.getAndDelete();
-            while (team3.equals(team2) || team3.equals(team1)) team3 = (Team) relacion.getAndDelete();
+
+        if(!finish52)
+
+    {
+
+        team1 = (Team) relacion.getAndDelete();
+        team2 = (Team) relacion.getAndDelete();
+        while (team1.equals(team2)) team2 = (Team) relacion.getAndDelete();
+        team3 = (Team) relacion.getAndDelete();
+        while (team3.equals(team2) || team3.equals(team1)) team3 = (Team) relacion.getAndDelete();
+        team4 = (Team) relacion.getAndDelete();
+        while (team4.equals(team3) || team4.equals(team2) || team4.equals(team1))
             team4 = (Team) relacion.getAndDelete();
-            while (team4.equals(team3) || team4.equals(team2) || team4.equals(team1))
-                team4 = (Team) relacion.getAndDelete();
+        team5 = (Team) relacion.getAndDelete();
+        while (team5.equals(team4) || team5.equals(team3) || team5.equals(team2) || team5.equals(team1))
             team5 = (Team) relacion.getAndDelete();
-            while (team5.equals(team4) || team5.equals(team3) || team5.equals(team2) || team5.equals(team1))
-                team5 = (Team) relacion.getAndDelete();
-            finish5=true;
-        }
+        finish52 = true;
+    }
 
         System.out.println(team1.getName());
         System.out.println(team2.getName());
@@ -401,5 +407,5 @@ class Questions {
         System.out.println(team5.getName());
 
 
-    }
+}
 }
