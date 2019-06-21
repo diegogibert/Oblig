@@ -308,16 +308,17 @@ public class Repository {
                 }
             }
         }
-        e1 = (Nodo) Repository.res.getAndDelete();
-        e2 = (Nodo)Repository.res.getAndDelete();
-        while (e1.equals(e2)) e2 = (Nodo)Repository.res.getAndDelete();
-        e3 = (Nodo)Repository.res.getAndDelete();
-        while (e3.equals(e2) || e3.equals(e1)) e3 = (Nodo)Repository.res.getAndDelete();
-        e4 = (Nodo)Repository.res.getAndDelete();
-        while (e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4 = (Nodo)Repository.res.getAndDelete();
-        e5 = (Nodo)Repository.res.getAndDelete();
-        while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
-            e5 = (Nodo)Repository.res.getAndDelete();
+
+            e1 = (Nodo) Repository.res.getAndDelete();
+            e2 = (Nodo) Repository.res.getAndDelete();
+            while (e1.equals(e2)) e2 = (Nodo) Repository.res.getAndDelete();
+            e3 = (Nodo) Repository.res.getAndDelete();
+            while (e3.equals(e2) || e3.equals(e1)) e3 = (Nodo) Repository.res.getAndDelete();
+            e4 = (Nodo) Repository.res.getAndDelete();
+            while (e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4 = (Nodo) Repository.res.getAndDelete();
+            e5 = (Nodo) Repository.res.getAndDelete();
+            while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
+                e5 = (Nodo) Repository.res.getAndDelete();
         System.out.println("Nombre: " + e1.getNombreEquipo() + " Relacion "+ e1.getMedallasPorEquipo()/ e1.getParticipantesPorEquipo());
         System.out.println("Nombre: " + e2.getNombreEquipo() + " Relacion "+ e2.getMedallasPorEquipo()/ e2.getParticipantesPorEquipo());
         System.out.println("Nombre: " + e3.getNombreEquipo() + " Relacion "+ e3.getMedallasPorEquipo()/ e3.getParticipantesPorEquipo());

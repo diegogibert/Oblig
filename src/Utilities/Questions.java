@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 class Questions {
     static boolean finish3 = false;
+    static boolean finish2 = false;
     static boolean finish4F = false;
     static boolean finish4M = false;
     static OlympicGame edicion1 = null;
@@ -112,9 +113,9 @@ class Questions {
     }
 
     public static void Question2() throws ListaVaciaException, ValorNoExisteException, ValorYaExisteException {
-        do{
-            Repository.preg2();
-        }while (false);
+        if(!finish2) Repository.preg2();
+        finish2=true;
+
 
         MedalType m = MedalType.NA;
         String t = "N";
@@ -356,9 +357,9 @@ class Questions {
             System.out.println("Opcion Invalida, ingrese ano maximo (menor o igual a 2016)");
             anoMaximo = scanner.nextInt();
         }
-        do{
+
             Repository.preg5F(anoMinimo, anoMaximo);
-        } while(false);
+
 
 
 
