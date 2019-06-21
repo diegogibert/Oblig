@@ -100,14 +100,18 @@ class Questions {
             }
         }
         if (m.equals(MedalType.SILVER)) {
+
             Repository.preg1P();
+
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasPlata.getAndDelete();
                 System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Platas: " + temp.getPlatas() + " Año min: " + temp.getFirstMedalSilver() + " Año max: " + temp.getLastMedalSilver());
             }
         }
         if (t == "T") {
+
             Repository.preg1T();
+
             for (int j = 0; j < 10; j++) {
                 Athlete temp = Repository.medallasTotales.getAndDelete();
                 System.out.println("Nombre Atleta: " + temp.getName() + " Sexo " + temp.getSex() + " Cantidad Medallas Totales: " + temp.getTotales() + " Año min: " + temp.getFirstMedalTotal() + " Año max: " + temp.getLastMedalTotal());
@@ -116,8 +120,9 @@ class Questions {
     }
 
     public static void Question2() throws ListaVaciaException, ValorNoExisteException, ValorYaExisteException {
-        if (!finish2) Repository.preg2O();
-        finish2 = true;
+        do{
+            Repository.preg2();
+        }while (false);
 
         MedalType m = MedalType.NA;
         String t = "N";
@@ -197,6 +202,7 @@ class Questions {
 
         if (!finish3) {
             Repository.preg3();
+
             edicion1 = Repository.OlympicGames.getAndDelete();
             edicion2 = Repository.OlympicGames.getAndDelete();
             while (edicion1.equals(edicion2)) edicion2 = Repository.OlympicGames.getAndDelete();
@@ -286,7 +292,11 @@ class Questions {
 
         if (s.equals(SexType.F)) {
             if (!finish4F) {
+                long time0= System.currentTimeMillis();
                 Repository.preg4F();
+                long time1= System.currentTimeMillis();
+                System.out.println(" ");
+                System.out.println("time: "+ (time1-time0));
                 e1 = Repository.CompetitionsF.getAndDelete();
                 e2 = Repository.CompetitionsF.getAndDelete();
                 while (e1.equals(e2)) e2 = Repository.CompetitionsF.getAndDelete();
@@ -302,7 +312,11 @@ class Questions {
         }
         if (s.equals(SexType.M)) {
             if (!finish4M) {
+                long time0= System.currentTimeMillis();
                 Repository.preg4M();
+                long time1= System.currentTimeMillis();
+                System.out.println(" ");
+                System.out.println("time: "+ (time1-time0));
                 ev1 = Repository.CompetitionsM.getAndDelete();
                 ev2 = Repository.CompetitionsM.getAndDelete();
                 while (ev1.equals(ev2)) ev2 = Repository.CompetitionsM.getAndDelete();

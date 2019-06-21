@@ -130,7 +130,7 @@ public class Repository {
         }
     }
 
-    public static void preg2O() throws ValorNoExisteException {
+    public static void preg2() throws ValorNoExisteException, ListaVaciaException {
         NationalOlympicCommittee noqui = null;
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
             Athlete temp = LoadData.atletas.get(i);

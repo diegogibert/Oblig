@@ -10,18 +10,20 @@ import java.util.InputMismatchException;
 public class Principal {
     private static boolean finished;
 
-    public static void main(String[] args) throws  InterruptedException {
+    public static void main(String[] args) throws InterruptedException {
 
 
         Thread thread = new Thread(() -> {
             try {
+
                 LoadData.load();
 
                 synchronized (Principal.class) {
+
                     finished = true;
                 }
             } catch (NullPointerException e) {
-               e.printStackTrace();
+                e.printStackTrace();
             }
         });
 
@@ -48,12 +50,12 @@ public class Principal {
                 System.out.println("Selection:");
                 menu.selection();
 
-            } catch (InputMismatchException | ValorNoExisteException | ListaVaciaException| ValorYaExisteException e) {
+            } catch (InputMismatchException | ValorNoExisteException | ListaVaciaException | ValorYaExisteException e) {
                 System.out.println("Ingrese una opcion valida");
                 try {
                     new Menu();
                     menu.selection();
-                } catch (ValorNoExisteException | InputMismatchException| ListaVaciaException| ValorYaExisteException ex) {
+                } catch (ValorNoExisteException | InputMismatchException | ListaVaciaException | ValorYaExisteException ex) {
                     ex.printStackTrace();
                 }
             }

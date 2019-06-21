@@ -1,7 +1,5 @@
 package uy.edu.um.clases;
 
-import org.jetbrains.annotations.NotNull;
-
 public class Nodo implements Comparable<Nodo> {
     private int medallasPorEquipo;
     private int participantesPorEquipo;
@@ -38,7 +36,7 @@ public class Nodo implements Comparable<Nodo> {
     }
 
     @Override
-    public int compareTo(@NotNull Nodo n) {
+    public int compareTo( Nodo n) {
         float res = this.medallasPorEquipo/((float)this.participantesPorEquipo) - n.getMedallasPorEquipo()/((float)n.getParticipantesPorEquipo());
         if(res < 0) return -1;
         if(res > 0) return 1;
