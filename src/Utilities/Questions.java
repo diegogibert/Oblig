@@ -10,12 +10,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Questions {
-    static boolean finish2 = false;
     static boolean finish3 = false;
     static boolean finish4F = false;
     static boolean finish4M = false;
-    static boolean finish52 = false;
-    static boolean finish5 = false;
     static OlympicGame edicion1 = null;
     static OlympicGame edicion2 = null;
     static OlympicGame edicion3 = null;
@@ -36,11 +33,6 @@ class Questions {
     static Event ev3 = null;
     static Event ev4 = null;
     static Event ev5 = null;
-    static Team team1 = null;
-    static Team team2 = null;
-    static Team team3 = null;
-    static Team team4 = null;
-    static Team team5 = null;
     static ArrayList<NationalOlympicCommittee> temp1 = new ArrayList<>();
     static ArrayList<NationalOlympicCommittee> temp2 = new ArrayList<>();
     static ArrayList<NationalOlympicCommittee> temp3 = new ArrayList<>();
@@ -351,12 +343,6 @@ class Questions {
 
     static void Question5() throws ValorNoExisteException, ValorYaExisteException, ListaVaciaException {
 
-
-        int cantidadMedallas;
-        int cantidadCompetidores;
-        boolean finish = false;
-        HeapMax relacion = new HeapMax(1000000);
-
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese ano minimo (mayor o igual a 1900)");
         int anoMinimo = scanner.nextInt();
@@ -370,50 +356,15 @@ class Questions {
             System.out.println("Opcion Invalida, ingrese ano maximo (menor o igual a 2016)");
             anoMaximo = scanner.nextInt();
         }
-        Repository.preg5F(anoMinimo, anoMaximo);
+        do{
+            long time0=System.currentTimeMillis();
+            Repository.preg5F(anoMinimo, anoMaximo);
+            long tim1= System.currentTimeMillis();
+            System.out.println(" ");
+            System.out.println("time: "+ (tim1-time0));
+        } while(false);
 
 
-//        for (int i = 0; i < Repository.teams.size(); i++) {
-//            cantidadCompetidores = 0;
-//            cantidadMedallas = 0;
-//
-//            int anoMinimoTemp = anoMinimo;
-//
-//            while (anoMinimoTemp <= anoMaximo && !finish) {
-//                try {
-//                    cantidadCompetidores = cantidadCompetidores + (Integer) Repository.teams.get(i).getCompetidoresPorAno().find(anoMinimoTemp);
-//                    cantidadMedallas = cantidadMedallas + (Integer) Repository.teams.get(i).getMedallasPorAno().find(anoMinimoTemp);
-//                    anoMinimoTemp = anoMinimoTemp + 1;
-//                    System.out.println(cantidadCompetidores);
-//                    System.out.println(cantidadMedallas);
-//                } catch (ListaVaciaException | ValorNoExisteException e) {
-//                    finish = true;
-//                }
-//            }
-//            System.out.println(cantidadCompetidores/ cantidadMedallas);
-//            relacion.add(new HeapNode(cantidadCompetidores/ cantidadMedallas, (Team) Repository.teams.get(i)));
-//        }
-//
-//        try {
-//            Repository.preg5();
-//            Team temp1 = (Team) relacion.getAndDelete();
-//            Team temp2 = (Team) relacion.getAndDelete();
-//            while (temp1.equals(temp2)) temp2 =(Team) relacion.getAndDelete();
-//            Team temp3 = (Team) relacion.getAndDelete();
-//            while (temp3.equals(temp2)|| temp3.equals(temp1)) temp3 =(Team) relacion.getAndDelete();
-//            Team temp4 = (Team) relacion.getAndDelete();
-//            while (temp4.equals(temp3)|| temp4.equals(temp2)|| temp4.equals(temp1)) temp4 =(Team) relacion.getAndDelete();
-//            Team temp5 = (Team) relacion.getAndDelete();
-//            while (temp5.equals(temp4)|| temp5.equals(temp3)|| temp5.equals(temp2)|| temp5.equals(temp1)) temp5 =(Team) relacion.getAndDelete();
-//            System.out.println(temp1.getName());
-//            System.out.println(temp2.getName());
-//            System.out.println(temp3.getName());
-//            System.out.println(temp4.getName());
-//            System.out.println(temp5.getName());
-//
-//        } catch (ListaVaciaException| ValorYaExisteException e) {
-//            e.printStackTrace();
-//        }
 
 
     }
