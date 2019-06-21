@@ -1,15 +1,12 @@
 package Utilities;
 
 
-import BinarySearchTree.ValorYaExisteException;
 import Hash.HashCerrado;
 import double_linked_list.ListaVaciaException;
 import double_linked_list.ValorNoExisteException;
 import heap.HeapMax;
 import heap.HeapNode;
 import uy.edu.um.clases.*;
-
-import java.util.ArrayList;
 
 public class Repository {
 
@@ -28,10 +25,13 @@ public class Repository {
     static HeapMax<Integer, NationalOlympicCommittee> medallasBroncePreg2 = new HeapMax<>(1000000);
     static HeapMax<Integer, NationalOlympicCommittee> medallasPlataPreg2 = new HeapMax<>(1000000);
     static HeapMax<Integer, NationalOlympicCommittee> medallasTotalesPreg2 = new HeapMax<>(1000000);
-    static ArrayList<Team> teams = new ArrayList<>(2000);
     static HashCerrado<Team, Nodo> preg5 = new HashCerrado<>(1000000);
-    static HeapMax<Nodo, Nodo> res = new HeapMax<>(10000000);
-
+    static HeapMax res = new HeapMax(10000000);
+    static Nodo e1;
+    static Nodo e2;
+    static Nodo e3;
+    static Nodo e4;
+    static Nodo e5;
 
     public static void preg1O() throws ValorNoExisteException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
@@ -261,44 +261,6 @@ public class Repository {
 
     }
 
-    public static void preg5() throws ValorNoExisteException, ListaVaciaException, ValorYaExisteException {
-
-        for (int i = 1; i <= LoadData.atletas.size(); i++) {
-            Athlete temp = LoadData.atletas.get(i);
-
-            for (int j = 0; j < temp.getAtleteOP().size(); j++) {
-                Team team = temp.getAtleteOP().get(j).getTeam();
-                MedalType medal = temp.getAtleteOP().get(j).getMedal();
-                int year = temp.getAtleteOP().get(j).getOG().getYear();
-
-                try {
-                    team.setCompetidoresPorAno(year, 1);
-                } catch (ValorYaExisteException e) {
-                    int cant = (Integer) team.getCompetidoresPorAno().find(year);
-                    team.getCompetidoresPorAno().delete(year);
-                    try {
-                        team.setCompetidoresPorAno(year, cant + 1);
-                    }catch (ValorYaExisteException ignored){}
-                }
-
-                if (medal.equals(MedalType.GOLD) || medal.equals(MedalType.SILVER) || medal.equals(MedalType.BRONZE) ) {
-                    try {
-                        team.setMedallasPorAno(year, 1);
-                    } catch (ValorYaExisteException e) {
-                        int cant = (Integer) team.getMedallasPorAno().find(year);
-                        team.getMedallasPorAno().delete(year);
-                        try {
-                            team.setMedallasPorAno(year, cant + 1);
-                        }catch (ValorYaExisteException ignored){}
-
-                    }
-
-                }
-                teams.add(team);
-            }
-
-        }
-    }
 
     public static void preg5F(int yearMin, int yearMax) throws ValorNoExisteException, ListaVaciaException {
         for (int i = 1; i <= LoadData.atletas.size(); i++) {
@@ -331,12 +293,36 @@ public class Repository {
 
             }
         }
-
-
-        for (int i = 0; i < 5; i++) {
-            Nodo temp = res.getAndDelete();
-            System.out.println(temp.getMedallasPorEquipo()/temp.getParticipantesPorEquipo() +"  "+ temp.getNombreEquipo() );
+        for (int i = 1; i <= LoadData.atletas.size(); i++) {
+            Athlete temp = LoadData.atletas.get(i);
+            for (int j = 0; j < temp.getAtleteOP().size(); j++) {
+                if (temp.getAtleteOP().get(j).getOG().getYear() >= yearMin && temp.getAtleteOP().get(j).getOG().getYear() <= yearMax) {
+                    Team team = temp.getAtleteOP().get(j).getTeam();
+                    Nodo nodito;
+                    try{
+                       nodito = preg5.get(team);
+                  } catch (ValorNoExisteException e) {
+                        continue;
+                    }
+                    res.add(new HeapNode<>(nodito,nodito));
+                }
+            }
         }
+        e1 = (Nodo) Repository.res.getAndDelete();
+        e2 = (Nodo)Repository.res.getAndDelete();
+        while (e1.equals(e2)) e2 = (Nodo)Repository.res.getAndDelete();
+        e3 = (Nodo)Repository.res.getAndDelete();
+        while (e3.equals(e2) || e3.equals(e1)) e3 = (Nodo)Repository.res.getAndDelete();
+        e4 = (Nodo)Repository.res.getAndDelete();
+        while (e4.equals(e3) || e4.equals(e2) || e4.equals(e1)) e4 = (Nodo)Repository.res.getAndDelete();
+        e5 = (Nodo)Repository.res.getAndDelete();
+        while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
+            e5 = (Nodo)Repository.res.getAndDelete();
+        System.out.println("Nombre: " + e1.getNombreEquipo() + " Cantidad de medallas "+ e1.getMedallasPorEquipo() + " Cantidad de competidores " + e1.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e2.getNombreEquipo() + " Cantidad de medallas "+ e2.getMedallasPorEquipo() + " Cantidad de competidores " + e2.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e3.getNombreEquipo() + " Cantidad de medallas "+ e3.getMedallasPorEquipo() + " Cantidad de competidores " + e3.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e4.getNombreEquipo() + " Cantidad de medallas "+ e4.getMedallasPorEquipo() + " Cantidad de competidores " + e4.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e5.getNombreEquipo() + " Cantidad de medallas "+ e5.getMedallasPorEquipo() + " Cantidad de competidores " + e5.getParticipantesPorEquipo());
     }
 
 

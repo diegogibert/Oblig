@@ -344,10 +344,10 @@ class Questions {
         HeapMax relacion = new HeapMax(1000000);
 
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingrese ano minimo (mayor o igual a 1920)");
+        System.out.println("Ingrese ano minimo (mayor o igual a 1900)");
         int anoMinimo = scanner.nextInt();
-        if (anoMinimo < 1920) {
-            System.out.println("Opcion Invalida, ingrese ano minimo (mayor o igual a 1920)");
+        if (anoMinimo < 1900) {
+            System.out.println("Opcion Invalida, ingrese ano minimo (mayor o igual a 1900)");
             anoMinimo = scanner.nextInt();
         }
         System.out.println("Ingrese ano maximo (menor o igual a 2016)");
