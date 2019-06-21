@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 
 public class LoadData {
+
     static HashCerrado<Integer, Athlete> atletas = new HashCerrado(140000);
     static HashCerrado<String, NationalOlympicCommittee> NationalOlympicCommittees = new HashCerrado<>(200000);
     static ArrayList<String> nocs= new ArrayList<>(3000);
