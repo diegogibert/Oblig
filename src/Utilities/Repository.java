@@ -318,16 +318,17 @@ public class Repository {
         e5 = (Nodo)Repository.res.getAndDelete();
         while (e5.equals(e4) || e5.equals(e3) || e5.equals(e2) || e5.equals(e1))
             e5 = (Nodo)Repository.res.getAndDelete();
-        System.out.println("Nombre: " + e1.getNombreEquipo() + " Cantidad de medallas "+ e1.getMedallasPorEquipo() + " Cantidad de competidores " + e1.getParticipantesPorEquipo());
-        System.out.println("Nombre: " + e2.getNombreEquipo() + " Cantidad de medallas "+ e2.getMedallasPorEquipo() + " Cantidad de competidores " + e2.getParticipantesPorEquipo());
-        System.out.println("Nombre: " + e3.getNombreEquipo() + " Cantidad de medallas "+ e3.getMedallasPorEquipo() + " Cantidad de competidores " + e3.getParticipantesPorEquipo());
-        System.out.println("Nombre: " + e4.getNombreEquipo() + " Cantidad de medallas "+ e4.getMedallasPorEquipo() + " Cantidad de competidores " + e4.getParticipantesPorEquipo());
-        System.out.println("Nombre: " + e5.getNombreEquipo() + " Cantidad de medallas "+ e5.getMedallasPorEquipo() + " Cantidad de competidores " + e5.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e1.getNombreEquipo() + " Relacion "+ e1.getMedallasPorEquipo()/ e1.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e2.getNombreEquipo() + " Relacion "+ e2.getMedallasPorEquipo()/ e2.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e3.getNombreEquipo() + " Relacion "+ e3.getMedallasPorEquipo()/ e3.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e4.getNombreEquipo() + " Relacion "+ e4.getMedallasPorEquipo()/ e4.getParticipantesPorEquipo());
+        System.out.println("Nombre: " + e5.getNombreEquipo() + " Relacion "+ e5.getMedallasPorEquipo()/ e5.getParticipantesPorEquipo());
     }
-
-
-
 }
+
+
+
+
 
 
 

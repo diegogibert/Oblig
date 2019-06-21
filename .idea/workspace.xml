@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="69a4a218-7d4b-47ea-94f3-43a8f8a4dfc6" name="Default Changelist" comment="claee nodo">
+    <list default="true" id="69a4a218-7d4b-47ea-94f3-43a8f8a4dfc6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/obligatorio/Principal.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/obligatorio/Principal.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/obligatorio/Utilities/LoadData.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/obligatorio/Utilities/LoadData.class" afterDir="false" />
@@ -9,7 +9,6 @@
       <change beforePath="$PROJECT_DIR$/out/production/obligatorio/Utilities/Questions.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/obligatorio/Utilities/Questions.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/obligatorio/uy/edu/um/clases/Athlete.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/obligatorio/uy/edu/um/clases/Athlete.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/obligatorio/uy/edu/um/clases/NationalOlympicCommittee.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/obligatorio/uy/edu/um/clases/NationalOlympicCommittee.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Utilities/Questions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilities/Questions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Utilities/Repository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Utilities/Repository.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -39,8 +38,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Utilities/Repository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-595">
-              <caret line="262" column="4" selection-start-line="262" selection-start-column="4" selection-end-line="262" selection-end-column="4" />
+            <state relative-caret-position="373">
+              <caret line="324" column="136" selection-start-line="324" selection-start-column="136" selection-end-line="324" selection-end-column="136" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -328,11 +327,18 @@
       <option name="project" value="LOCAL" />
       <updated>1561074403534</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="claee nodo">
+      <created>1561078440700</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1561078440700</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.29500756" />
@@ -628,8 +634,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Utilities/Repository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-595">
-          <caret line="262" column="4" selection-start-line="262" selection-start-column="4" selection-end-line="262" selection-end-column="4" />
+        <state relative-caret-position="373">
+          <caret line="324" column="136" selection-start-line="324" selection-start-column="136" selection-end-line="324" selection-end-column="136" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
