@@ -357,11 +357,7 @@ class Questions {
             anoMaximo = scanner.nextInt();
         }
         do{
-            long time0=System.currentTimeMillis();
             Repository.preg5F(anoMinimo, anoMaximo);
-            long tim1= System.currentTimeMillis();
-            System.out.println(" ");
-            System.out.println("time: "+ (tim1-time0));
         } while(false);
 
 
